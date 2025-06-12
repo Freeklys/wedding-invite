@@ -6,235 +6,286 @@
 <title>Свадьба Дарьи и Тимура</title>
 <style>
   /* Сброс */
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+  }
+  body, html {
+    height: 100%;
     font-family: 'Georgia', serif;
-    color: #5b3a29;
-    background: url('https://i.imgur.com/K34xTrq.jpg') no-repeat center center fixed;
-    background-size: cover;
-    min-height: 100vh;
     overflow-x: hidden;
+    background: #fff;
+  }
+
+  /* Фоновая картинка с параллаксом */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: url('https://i.imgur.com/K34xTrq.jpg') center center / cover no-repeat fixed;
+    z-index: -1;
+    transform-origin: center center;
+    will-change: transform;
+    transition: transform 0.3s ease-out;
+    filter: brightness(0.9) saturate(1.1);
   }
 
   .overlay {
-    background: rgba(255 255 255 / 0.85);
     max-width: 900px;
-    margin: auto;
-    padding: 40px 20px 60px 20px;
+    margin: 0 auto;
+    background: rgba(255 255 255 / 0.9);
+    padding: 50px 20px 80px 20px;
     min-height: 100vh;
-    box-sizing: border-box;
-    position: relative;
+    box-shadow: 0 0 40px rgba(0,0,0,0.12);
   }
 
-  /* Анимация плавного подъема */
-  h1, p {
-    opacity: 0;
-    transform: translateY(30px);
-    animation-fill-mode: forwards;
+  header {
+    text-align: center;
+    margin-bottom: 50px;
+    user-select: none;
   }
 
   h1 {
-    font-size: 3.5em;
-    animation: fadeUp 1s ease forwards;
-    animation-delay: 0.5s;
-    text-align: center;
-    letter-spacing: 3px;
+    font-size: 4.2rem;
+    color: #6b4c37;
+    font-weight: 700;
     position: relative;
+    overflow: hidden;
+    letter-spacing: 4px;
+    text-shadow: 0 0 6px rgba(255 255 255 / 0.7);
+    animation: fadeUpScale 1.5s ease forwards;
+    animation-delay: 0.4s;
   }
-
-  /* Мерцание */
-  h1.shimmer::before {
+  /* Блеск заголовка */
+  h1::before {
     content: "";
     position: absolute;
-    top: 0; left: -100%;
+    top: 0; left: -150%;
+    width: 150%;
     height: 100%;
-    width: 100%;
     background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.5) 50%, transparent 100%);
-    animation: shimmerMove 3s infinite;
+    transform: skewX(-25deg);
+    animation: shine 3s linear infinite;
   }
 
-  p {
-    font-size: 1.4em;
-    margin-top: 10px;
-    animation: fadeUp 1s ease forwards;
-    animation-delay: 1.5s;
-    text-align: center;
+  p.subtitle {
+    margin-top: 12px;
+    font-size: 1.5rem;
     color: #7b5e4d;
+    opacity: 0;
+    animation: fadeUp 1.5s ease forwards;
+    animation-delay: 1.2s;
+    text-shadow: 0 0 5px rgba(255 255 255 / 0.8);
+  }
+
+  @keyframes fadeUpScale {
+    0% {
+      opacity: 0;
+      transform: translateY(30px) scale(0.9);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
   }
 
   @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
     to {
       opacity: 1;
       transform: translateY(0);
     }
   }
 
-  @keyframes shimmerMove {
-    100% {
-      left: 100%;
+  @keyframes shine {
+    0% {
+      left: -150%;
     }
-  }
-
-  section {
-    margin: 40px 0;
-    line-height: 1.6;
-    color: #4d3b2f;
-  }
-
-  h2 {
-    font-size: 1.9em;
-    margin-bottom: 15px;
-    color: #6e4f3a;
-  }
-
-  /* Карточка с подсказками */
-  .tips {
-    list-style: decimal inside;
-    margin-top: 10px;
-  }
-  .tips li {
-    margin-bottom: 12px;
-  }
-
-  /* Карта */
-  .map-container {
-    width: 100%;
-    height: 320px;
-    overflow: hidden;
-    border-radius: 8px;
-    border: 1px solid #cca88a;
-    box-shadow: 0 0 15px rgba(180,150,120,0.3);
-  }
-  .map-container iframe {
-    width: 100%;
-    height: 100%;
-    border:0;
+    100% {
+      left: 150%;
+    }
   }
 
   /* Таймер обратного отсчёта */
   #countdown {
+    margin-top: 30px;
     display: flex;
     justify-content: center;
-    gap: 25px;
-    font-size: 1.4em;
-    margin-top: 15px;
-    color: #6b4c37;
+    gap: 30px;
+    font-size: 1.3rem;
+    color: #6e4f3a;
+    user-select: none;
   }
   #countdown div {
+    background: rgba(215,180,150,0.7);
+    padding: 12px 20px;
+    border-radius: 12px;
+    min-width: 75px;
+    box-shadow: inset 0 0 10px rgba(255 255 255 / 0.8);
     text-align: center;
-    background: rgba(219,179,148,0.7);
-    padding: 10px 15px;
-    border-radius: 10px;
-    box-shadow: inset 0 0 5px rgba(255,255,255,0.5);
-    min-width: 70px;
+    transition: background-color 0.3s ease;
   }
   #countdown div span {
     display: block;
-    font-size: 2.2em;
     font-weight: 700;
+    font-size: 2.3rem;
+    line-height: 1;
+  }
+  #countdown div:hover {
+    background: rgba(215,180,150,1);
+    cursor: default;
+  }
+
+  section {
+    margin-bottom: 50px;
+    color: #4f3b2b;
+    font-size: 1.15rem;
+    line-height: 1.7;
+  }
+  section h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #7e5a3c;
+    text-shadow: 0 0 2px rgba(255 255 255 / 0.8);
+  }
+
+  .map-container {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 0 25px rgba(0,0,0,0.12);
+    border: 2px solid #d6b79a;
+    height: 320px;
+  }
+  iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  ol.tips {
+    padding-left: 20px;
+    list-style-type: decimal;
+  }
+  ol.tips li {
+    margin-bottom: 14px;
   }
 
   /* Форма */
   form {
     display: grid;
-    gap: 18px;
-    font-size: 1.1em;
-    color: #5a3e27;
+    gap: 22px;
   }
   label {
     font-weight: 600;
+    color: #5d3f24;
+    user-select: none;
   }
-  input[type=text], textarea, select {
+  input[type=text], textarea {
     width: 100%;
-    padding: 8px 12px;
-    border: 1.8px solid #c8a27c;
-    border-radius: 6px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 2px solid #cba783;
+    font-size: 1.1rem;
     font-family: inherit;
-    font-size: 1em;
-    background: #fef9f5;
-    color: #5a3e27;
-    transition: border-color 0.3s ease;
+    color: #5d3f24;
+    background-color: #fef9f4;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
   }
-  input[type=text]:focus, textarea:focus, select:focus {
+  input[type=text]:focus, textarea:focus {
+    border-color: #a76833;
+    background-color: #fff;
     outline: none;
-    border-color: #b7794f;
-    background: #fff;
   }
 
-  /* Радио-группа */
-  .radio-group {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-  .radio-group label {
-    font-weight: normal;
-    cursor: pointer;
-  }
-  .radio-group input[type=radio] {
-    margin-right: 8px;
-    cursor: pointer;
-  }
-
-  /* Список пунктов вместо мультиселекта */
-  .checkbox-group {
+  .radio-group, .checkbox-group {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 15px;
   }
-  .checkbox-group label {
+  .radio-group label, .checkbox-group label {
     cursor: pointer;
-    background: #e3cbbd;
-    padding: 8px 12px;
-    border-radius: 6px;
+    padding: 8px 16px;
+    background-color: #e9d7c3;
+    border-radius: 12px;
     user-select: none;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+    color: #5c3f23;
   }
-  .checkbox-group input[type=checkbox] {
-    margin-right: 6px;
+  .radio-group input[type=radio], .checkbox-group input[type=checkbox] {
     cursor: pointer;
+    width: 18px;
+    height: 18px;
   }
+  .radio-group input[type=radio]:checked + span,
   .checkbox-group input[type=checkbox]:checked + span {
-    background: #d3a58f;
+    background-color: #b77d49;
     color: white;
+    border-radius: 12px;
+  }
+
+  .radio-group input[type=radio]:checked + span {
+    background-color: #b77d49;
+    color: white;
+  }
+
+  .checkbox-group label span {
+    padding: 4px 10px;
+    border-radius: 12px;
+    user-select: none;
   }
 
   /* Кнопка */
   button {
-    padding: 14px 28px;
-    font-size: 1.15em;
-    background: #b7794f;
-    color: #fff;
+    max-width: 280px;
+    margin: 0 auto;
+    padding: 16px 40px;
+    font-size: 1.3rem;
+    background-color: #a9682f;
     border: none;
-    border-radius: 8px;
+    border-radius: 16px;
+    color: #fff;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-    width: fit-content;
+    font-weight: 700;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    display: block;
+    user-select: none;
   }
-  button:hover {
-    background: #9e5f2f;
+  button:hover, button:focus {
+    background-color: #8a5e23;
+    box-shadow: 0 0 12px #a9682f;
+    outline: none;
   }
 
   /* Мобильная адаптация */
   @media (max-width: 480px) {
     h1 {
-      font-size: 2.6em;
+      font-size: 2.8rem;
     }
-    p {
-      font-size: 1.1em;
+    p.subtitle {
+      font-size: 1.2rem;
     }
     #countdown {
-      flex-wrap: wrap;
-      gap: 15px;
+      gap: 20px;
+      font-size: 1.1rem;
     }
     #countdown div {
-      min-width: 55px;
-      font-size: 1.2em;
-      padding: 8px 12px;
+      min-width: 60px;
+      padding: 10px 15px;
     }
     #countdown div span {
-      font-size: 1.6em;
+      font-size: 1.8rem;
+    }
+    section h2 {
+      font-size: 1.6rem;
+    }
+    form {
+      gap: 16px;
     }
   }
 </style>
@@ -244,9 +295,9 @@
 <div class="overlay">
 
   <header>
-    <h1 class="shimmer">Дарья &amp; Тимур</h1>
-    <p>9 августа 2025 — приглашаем вас на нашу свадьбу!</p>
-    <div id="countdown">
+    <h1>Дарья &amp; Тимур</h1>
+    <p class="subtitle">9 августа 2025 — приглашаем вас на нашу свадьбу!</p>
+    <div id="countdown" aria-label="Обратный отсчёт до свадьбы">
       <div><span id="days">--</span>дней</div>
       <div><span id="hours">--</span>часов</div>
       <div><span id="minutes">--</span>мин</div>
@@ -255,19 +306,20 @@
   </header>
 
   <section>
-    <p>Дорогие друзья и близкие, приглашаем вас разделить с нами этот особенный день!<br>
+    <p>Дорогие друзья и близкие, приглашаем вас разделить с нами этот особенный день!<br />
       Совсем скоро состоится наша камерная свадьба в <strong>Купеческой усадьбе «Бирский берег», г. Бирск, улица Забелье, 1</strong>.</p>
-    <p>Формат: выездная церемония и банкет на природе.<br>
+    <p>Формат: выездная церемония и банкет на природе.<br />
       Дресс-код: для нас главное — ваше присутствие! Но будем рады, если вы поддержите нашу цветовую гамму и стиль.</p>
   </section>
 
   <section>
     <h2>Как добраться</h2>
-    <div class="map-container">
+    <div class="map-container" aria-label="Карта с местом проведения свадьбы">
       <iframe
         src="https://www.google.com/maps?q=г.Бирск,+улица+Забелье+1&output=embed"
         allowfullscreen=""
-        loading="lazy">
+        loading="lazy"
+        title="Карта с местом проведения свадьбы">
       </iframe>
     </div>
   </section>
@@ -284,19 +336,19 @@
 
   <section>
     <h2>Подтвердите участие</h2>
-    <form action="https://formspree.io/f/mkgbrvgd" method="POST">
+    <form action="https://formspree.io/f/mkgbrvgd" method="POST" aria-label="Форма подтверждения участия на свадьбу">
       <label for="name">1. ФИО:</label>
-      <input type="text" id="name" name="ФИО" required />
+      <input type="text" id="name" name="ФИО" required autocomplete="name" />
 
       <label>2. Планируете ли присутствовать?</label>
-      <div class="radio-group">
-        <label><input type="radio" name="Присутствие" value="Да, с удовольствием!" required /> Да, с удовольствием!</label>
-        <label><input type="radio" name="Присутствие" value="Не смогу приехать..." /> Не смогу приехать...</label>
-        <label><input type="radio" name="Присутствие" value="Приеду, но поздно" /> Приеду, но поздно</label>
+      <div class="radio-group" role="radiogroup" aria-required="true" aria-labelledby="presence-label">
+        <label><input type="radio" name="Присутствие" value="Да, с удовольствием!" required /><span>Да, с удовольствием!</span></label>
+        <label><input type="radio" name="Присутствие" value="Не смогу приехать..." /><span>Не смогу приехать...</span></label>
+        <label><input type="radio" name="Присутствие" value="Приеду, но поздно" /><span>Приеду, но поздно</span></label>
       </div>
 
       <label>3. Предпочитаемый алкоголь (можно выбрать несколько):</label>
-      <div class="checkbox-group">
+      <div class="checkbox-group" role="group" aria-labelledby="alcohol-label">
         <label><input type="checkbox" name="Алкоголь" value="Шампанское" /><span>Шампанское</span></label>
         <label><input type="checkbox" name="Алкоголь" value="Вино белое полусладкое" /><span>Вино белое полусладкое</span></label>
         <label><input type="checkbox" name="Алкоголь" value="Вино белое сухое" /><span>Вино белое сухое</span></label>
@@ -309,38 +361,57 @@
       </div>
 
       <label for="allergy">4. Есть ли у вас аллергия? Укажите на что:</label>
-      <textarea id="allergy" name="Аллергия" rows="2"></textarea>
+      <textarea id="allergy" name="Аллергия" rows="2" placeholder="Например, орехи, пыльца и т.п."></textarea>
 
       <label>5. Останетесь ли с ночёвкой?</label>
-      <div class="radio-group">
-        <label><input type="radio" name="Ночёвка" value="Останусь с вами до последнего" required /> Останусь с вами до последнего</label>
-        <label><input type="radio" name="Ночёвка" value="Поеду домой в свою постельку" /> Поеду домой в свою постельку</label>
+      <div class="radio-group" role="radiogroup" aria-required="true" aria-labelledby="overnight-label">
+        <label><input type="radio" name="Ночёвка" value="Останусь с вами до последнего" required /><span>Останусь с вами до последнего</span></label>
+        <label><input type="radio" name="Ночёвка" value="Поеду домой в свою постельку" /><span>Поеду домой в свою постельку</span></label>
       </div>
 
-      <button type="submit">Отправить</button>
+      <button type="submit" aria-label="Отправить форму подтверждения участия">Отправить</button>
     </form>
   </section>
 
 </div>
 
 <script>
-const targetDate = new Date('2025-08-09T16:00:00');
-function updateTimer() {
-  const now = new Date();
-  const diff = targetDate - now;
-  if (diff <= 0) return;
-  const d = Math.floor(diff/1000/60/60/24);
-  const h = Math.floor(diff/1000/60/60)%24;
-  const m = Math.floor(diff/1000/60)%60;
-  const s = Math.floor(diff/1000)%60;
-  document.getElementById('days').textContent = d;
-  document.getElementById('hours').textContent = h;
-  document.getElementById('minutes').textContent = m;
-  document.getElementById('seconds').textContent = s;
-}
-setInterval(updateTimer, 1000);
-updateTimer();
-</script>
+  const targetDate = new Date('2025-08-09T16:00:00');
+  function updateTimer() {
+    const now = new Date();
+    const diff = targetDate - now;
+    if (diff <= 0) {
+      document.getElementById('days').textContent = 0;
+      document.getElementById('hours').textContent = 0;
+      document.getElementById('minutes').textContent = 0;
+      document.getElementById('seconds').textContent = 0;
+      return;
+    }
+    const d = Math.floor(diff / 1000 / 60 / 60 / 24);
+    const h = Math.floor(diff / 1000 / 60 / 60) % 24;
+    const m = Math.floor(diff / 1000 / 60) % 60;
+    const s = Math.floor(diff / 1000) % 60;
+    document.getElementById('days').textContent = d;
+    document.getElementById('hours').textContent = h;
+    document.getElementById('minutes').textContent = m;
+    document.getElementById('seconds').textContent = s;
+  }
+  setInterval(updateTimer, 1000);
+  updateTimer();
 
+  // Параллакс фон при скролле
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    const scale = 1 + scrollY * 0.0003; // чуть увеличиваем фон
+    const translateY = scrollY * 0.15; // сдвигаем фон вниз
+    document.body.style.setProperty('--scroll-y', `${scrollY}px`);
+    document.querySelector('body::before');
+    document.querySelector('body::before');
+    const bg = document.querySelector('body::before');
+    // Но псевдоэлемент напрямую не доступен из JS, поэтому используем body::before CSS и обновляем через стиль
+    // Решение: меняем transform через JS для body::before через CSS-переменную
+    document.body.style.setProperty('--bg-transform', `translateY(${translateY}px) scale(${scale})`);
+  });
+</script>
 </body>
 </html>
