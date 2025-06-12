@@ -4,53 +4,43 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
   <title>Свадьба Дарьи и Тимура</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
   <style>
     * { margin:0; padding:0; box-sizing:border-box; }
     body {
       font-family: 'Georgia', serif;
       color: #333;
-      background: url('background.jpg') center/cover no-repeat fixed;
+      background: linear-gradient(135deg, #f9f1e7, #f2d7cd);
       position: relative;
       min-height: 100vh;
-      transition: background-color 0.3s, color 0.3s;
-    }
-    body.night-mode {
-      background: #1c1c1c;
-      color: #f0e6d2;
     }
     .wrapper {
       background: rgba(255,255,255,0.85);
       max-width: 900px;
       margin: auto;
       padding: 20px;
-      transition: background 0.3s;
-    }
-    body.night-mode .wrapper {
-      background: rgba(0,0,0,0.6);
+      box-shadow: 0 0 15px rgba(211,165,143,0.3);
+      border-radius: 10px;
     }
     header {
       text-align: center;
       padding: 40px 20px;
     }
-    header h1 { font-size: 3em; margin-bottom: 0.2em; }
+    header h1 { font-size: 3em; margin-bottom: 0.2em; color:#b88975; }
     header p { font-size: 1.2em; }
-
     section { margin: 30px 0; line-height: 1.6; }
-    h2 { font-size: 1.8em; margin-bottom: 0.5em; }
-
+    h2 { font-size: 1.8em; margin-bottom: 0.5em; color:#a66a52; }
     #countdown {
       display: flex;
       justify-content: center;
       gap: 20px;
       font-size: 1.4em;
       margin-top: 10px;
+      color:#7a5745;
     }
     #countdown div { text-align: center; }
     #countdown div span { display: block; font-size: 2em; }
-
     form { display: grid; gap: 15px; }
-    form label { font-weight: bold; }
+    form label { font-weight: bold; color:#7a5745; }
     form input[type=text],
     form textarea,
     form select {
@@ -58,10 +48,10 @@
       padding: 8px;
       border: 1px solid #ccc;
       border-radius: 5px;
+      font-family: 'Georgia', serif;
     }
     .radio-group { display: flex; flex-direction: column; gap: 5px; }
-    .radio-group label { font-weight: normal; }
-
+    .radio-group label { font-weight: normal; color:#5a4535; }
     button {
       padding: 12px 25px;
       font-size: 1.1em;
@@ -71,9 +61,9 @@
       border-radius: 6px;
       cursor: pointer;
       justify-self: start;
+      transition: background-color 0.3s ease;
     }
     button:hover { background: #b88975; }
-
     .map-container {
       width: 100%;
       height: 300px;
@@ -86,34 +76,19 @@
       height: 100%;
       border:0;
     }
-
-    .tips { list-style: decimal inside; margin-top: 10px; }
+    .tips { list-style: decimal inside; margin-top: 10px; color:#7a5745; }
     .tips li { margin-bottom: 8px; }
-
-    .toggle-mode {
-      position: fixed;
-      top: 10px;
-      right: 10px;
-      background: #d3a58f;
-      border: none;
-      color: white;
-      padding: 10px;
-      border-radius: 8px;
-      cursor: pointer;
+    #form-message {
+      margin-top: 15px;
+      font-weight: bold;
+      color: green;
     }
-
-    audio { display: block; margin: 20px auto; }
   </style>
 </head>
 <body>
 
-<button class="toggle-mode" onclick="toggleMode()">Переключить режим</button>
-<audio controls autoplay loop>
-  <source src="music.mp3" type="audio/mpeg">
-  Ваш браузер не поддерживает аудио.
-</audio>
+<div class="wrapper">
 
-<div class="wrapper animate__animated animate__fadeIn">
   <header>
     <h1>Дарья &amp; Тимур</h1>
     <p>9 августа 2025</p>
@@ -126,14 +101,19 @@
   </header>
 
   <section>
-    <p>Дорогие друзья и близкие, приглашаем вас разделить с нами этот особенный день! Совсем скоро состоится наша камерная свадьба в <strong>Купеческой усадьбе «Бирский берег»</strong>.</p>
-    <p>Формат: выездная церемония и банкет на природе. Дресс-код: для нас главное — ваше присутствие! Но будем рады, если вы поддержите нашу цветовую гамму и стиль.</p>
+    <p>Дорогие друзья и близкие, приглашаем вас разделить с нами этот особенный день!
+    Совсем скоро состоится наша камерная свадьба в <strong>Купеческой усадьбе «Бирский берег», г. Бирск, улица Забелье, 1</strong>.</p>
+    <p>Формат: выездная церемония и банкет на природе. 
+    Дресс-код: для нас главное — ваше присутствие! Но будем рады, если вы поддержите нашу цветовую гамму и стиль.</p>
   </section>
 
   <section>
     <h2>Как добраться</h2>
     <div class="map-container">
-      <iframe src="https://www.google.com/maps?q=Купеческая+усадьба+Бирский+берег+Уфа&output=embed" allowfullscreen></iframe>
+      <iframe
+        src="https://www.google.com/maps?q=г.Бирск,+улица+Забелье+1&output=embed"
+        allowfullscreen>
+      </iframe>
     </div>
   </section>
 
@@ -149,7 +129,7 @@
 
   <section>
     <h2>Подтвердите участие</h2>
-    <form action="https://formspree.io/f/mkgbrvgd" method="POST">
+    <form id="rsvp-form">
       <label for="name">1. ФИО:</label>
       <input type="text" id="name" name="ФИО" required />
 
@@ -184,7 +164,9 @@
 
       <button type="submit">Отправить</button>
     </form>
+    <div id="form-message"></div>
   </section>
+
 </div>
 
 <script>
@@ -205,9 +187,42 @@ function updateTimer() {
 setInterval(updateTimer, 1000);
 updateTimer();
 
-function toggleMode() {
-  document.body.classList.toggle('night-mode');
-}
+const form = document.getElementById('rsvp-form');
+const messageBox = document.getElementById('form-message');
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const formData = new FormData(form);
+
+  try {
+    const response = await fetch('https://formspree.io/f/mkgbrvgd', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json'
+      },
+      body: formData
+    });
+
+    if (response.ok) {
+      messageBox.style.color = 'green';
+      messageBox.textContent = "Спасибо! Ваш ответ получен.";
+      form.reset();
+    } else {
+      const data = await response.json();
+      if (data.errors) {
+        messageBox.style.color = 'red';
+        messageBox.textContent = data.errors.map(error => error.message).join(", ");
+      } else {
+        messageBox.style.color = 'red';
+        messageBox.textContent = "Произошла ошибка при отправке. Попробуйте позже.";
+      }
+    }
+  } catch (error) {
+    messageBox.style.color = 'red';
+    messageBox.textContent = "Ошибка сети. Проверьте соединение.";
+  }
+});
 </script>
 
 </body>
