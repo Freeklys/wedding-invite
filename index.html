@@ -9,7 +9,7 @@
     body {
       font-family: 'Georgia', serif;
       color: #333;
-      background: linear-gradient(135deg, #f9f1e7, #f2d7cd);
+      background: url('https://i.imgur.com/K34xTrq.jpg') center center / cover no-repeat fixed;
       position: relative;
       min-height: 100vh;
     }
@@ -18,40 +18,60 @@
       max-width: 900px;
       margin: auto;
       padding: 20px;
-      box-shadow: 0 0 15px rgba(211,165,143,0.3);
-      border-radius: 10px;
     }
     header {
       text-align: center;
       padding: 40px 20px;
     }
-    header h1 { font-size: 3em; margin-bottom: 0.2em; color:#b88975; }
+    header h1 { font-size: 3em; margin-bottom: 0.2em; }
     header p { font-size: 1.2em; }
     section { margin: 30px 0; line-height: 1.6; }
-    h2 { font-size: 1.8em; margin-bottom: 0.5em; color:#a66a52; }
+    h2 { font-size: 1.8em; margin-bottom: 0.5em; }
     #countdown {
       display: flex;
       justify-content: center;
       gap: 20px;
       font-size: 1.4em;
       margin-top: 10px;
-      color:#7a5745;
     }
     #countdown div { text-align: center; }
     #countdown div span { display: block; font-size: 2em; }
     form { display: grid; gap: 15px; }
-    form label { font-weight: bold; color:#7a5745; }
+    form label { font-weight: bold; }
     form input[type=text],
-    form textarea,
-    form select {
+    form textarea {
       width: 100%;
       padding: 8px;
       border: 1px solid #ccc;
       border-radius: 5px;
-      font-family: 'Georgia', serif;
+    }
+    .checkbox-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 5px;
+    }
+    .checkbox-group label {
+      font-weight: normal;
+      background: #f5e9e0;
+      border-radius: 4px;
+      padding: 5px 10px;
+      cursor: pointer;
+      user-select: none;
+      border: 1px solid transparent;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .checkbox-group input[type="checkbox"] {
+      margin-right: 6px;
+      cursor: pointer;
+    }
+    .checkbox-group input[type="checkbox"]:checked + label {
+      background: #d3a58f;
+      color: white;
+      border-color: #b88975;
     }
     .radio-group { display: flex; flex-direction: column; gap: 5px; }
-    .radio-group label { font-weight: normal; color:#5a4535; }
+    .radio-group label { font-weight: normal; cursor: pointer; }
     button {
       padding: 12px 25px;
       font-size: 1.1em;
@@ -61,7 +81,7 @@
       border-radius: 6px;
       cursor: pointer;
       justify-self: start;
-      transition: background-color 0.3s ease;
+      width: fit-content;
     }
     button:hover { background: #b88975; }
     .map-container {
@@ -76,13 +96,8 @@
       height: 100%;
       border:0;
     }
-    .tips { list-style: decimal inside; margin-top: 10px; color:#7a5745; }
+    .tips { list-style: decimal inside; margin-top: 10px; }
     .tips li { margin-bottom: 8px; }
-    #form-message {
-      margin-top: 15px;
-      font-weight: bold;
-      color: green;
-    }
   </style>
 </head>
 <body>
@@ -129,7 +144,7 @@
 
   <section>
     <h2>Подтвердите участие</h2>
-    <form id="rsvp-form">
+    <form action="https://formspree.io/f/mkgbrvgd" method="POST">
       <label for="name">1. ФИО:</label>
       <input type="text" id="name" name="ФИО" required />
 
@@ -140,18 +155,35 @@
         <label><input type="radio" name="Присутствие" value="Приеду, но поздно" /> Приеду, но поздно</label>
       </div>
 
-      <label for="alcohol">3. Предпочитаемый алкоголь (можно несколько):</label>
-      <select id="alcohol" name="Алкоголь" multiple>
-        <option>Шампанское</option>
-        <option>Вино белое полусладкое</option>
-        <option>Вино белое сухое</option>
-        <option>Вино красное полусладкое</option>
-        <option>Вино красное сухое</option>
-        <option>Пиво</option>
-        <option>Коньяк</option>
-        <option>Водка</option>
-        <option>Не пью</option>
-      </select>
+      <label>3. Предпочитаемый алкоголь (можно выбрать несколько):</label>
+      <div class="checkbox-group">
+        <input type="checkbox" id="champagne" name="Алкоголь" value="Шампанское" />
+        <label for="champagne">Шампанское</label>
+
+        <input type="checkbox" id="whiteSemiSweet" name="Алкоголь" value="Вино белое полусладкое" />
+        <label for="whiteSemiSweet">Вино белое полусладкое</label>
+
+        <input type="checkbox" id="whiteDry" name="Алкоголь" value="Вино белое сухое" />
+        <label for="whiteDry">Вино белое сухое</label>
+
+        <input type="checkbox" id="redSemiSweet" name="Алкоголь" value="Вино красное полусладкое" />
+        <label for="redSemiSweet">Вино красное полусладкое</label>
+
+        <input type="checkbox" id="redDry" name="Алкоголь" value="Вино красное сухое" />
+        <label for="redDry">Вино красное сухое</label>
+
+        <input type="checkbox" id="beer" name="Алкоголь" value="Пиво" />
+        <label for="beer">Пиво</label>
+
+        <input type="checkbox" id="cognac" name="Алкоголь" value="Коньяк" />
+        <label for="cognac">Коньяк</label>
+
+        <input type="checkbox" id="vodka" name="Алкоголь" value="Водка" />
+        <label for="vodka">Водка</label>
+
+        <input type="checkbox" id="noDrink" name="Алкоголь" value="Не пью" />
+        <label for="noDrink">Не пью</label>
+      </div>
 
       <label for="allergy">4. Есть ли у вас аллергия? Укажите на что:</label>
       <textarea id="allergy" name="Аллергия" rows="2"></textarea>
@@ -164,65 +196,27 @@
 
       <button type="submit">Отправить</button>
     </form>
-    <div id="form-message"></div>
   </section>
 
 </div>
 
 <script>
-const targetDate = new Date('2025-08-09T16:00:00');
-function updateTimer() {
-  const now = new Date();
-  const diff = targetDate - now;
-  if (diff <= 0) return;
-  const d = Math.floor(diff/1000/60/60/24);
-  const h = Math.floor(diff/1000/60/60)%24;
-  const m = Math.floor(diff/1000/60)%60;
-  const s = Math.floor(diff/1000)%60;
-  document.getElementById('days').textContent = d;
-  document.getElementById('hours').textContent = h;
-  document.getElementById('minutes').textContent = m;
-  document.getElementById('seconds').textContent = s;
-}
-setInterval(updateTimer, 1000);
-updateTimer();
-
-const form = document.getElementById('rsvp-form');
-const messageBox = document.getElementById('form-message');
-
-form.addEventListener('submit', async (e) => {
-  e.preventDefault();
-
-  const formData = new FormData(form);
-
-  try {
-    const response = await fetch('https://formspree.io/f/mkgbrvgd', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json'
-      },
-      body: formData
-    });
-
-    if (response.ok) {
-      messageBox.style.color = 'green';
-      messageBox.textContent = "Спасибо! Ваш ответ получен.";
-      form.reset();
-    } else {
-      const data = await response.json();
-      if (data.errors) {
-        messageBox.style.color = 'red';
-        messageBox.textContent = data.errors.map(error => error.message).join(", ");
-      } else {
-        messageBox.style.color = 'red';
-        messageBox.textContent = "Произошла ошибка при отправке. Попробуйте позже.";
-      }
-    }
-  } catch (error) {
-    messageBox.style.color = 'red';
-    messageBox.textContent = "Ошибка сети. Проверьте соединение.";
+  const targetDate = new Date('2025-08-09T16:00:00');
+  function updateTimer() {
+    const now = new Date();
+    const diff = targetDate - now;
+    if (diff <= 0) return;
+    const d = Math.floor(diff/1000/60/60/24);
+    const h = Math.floor(diff/1000/60/60)%24;
+    const m = Math.floor(diff/1000/60)%60;
+    const s = Math.floor(diff/1000)%60;
+    document.getElementById('days').textContent = d;
+    document.getElementById('hours').textContent = h;
+    document.getElementById('minutes').textContent = m;
+    document.getElementById('seconds').textContent = s;
   }
-});
+  setInterval(updateTimer, 1000);
+  updateTimer();
 </script>
 
 </body>
