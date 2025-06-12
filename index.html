@@ -1,0 +1,182 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Свадьба Дарьи и Тимура</title>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: 'Georgia', serif;
+      color: #333;
+      background: url('background.jpg') center/cover no-repeat fixed;
+      position: relative;
+      min-height: 100vh;
+    }
+    .wrapper {
+      background: rgba(255,255,255,0.85);
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+    }
+    header {
+      text-align: center;
+      padding: 40px 20px;
+    }
+    header h1 { font-size: 3em; margin-bottom: 0.2em; }
+    header p { font-size: 1.2em; }
+    section { margin: 30px 0; line-height: 1.6; }
+    h2 { font-size: 1.8em; margin-bottom: 0.5em; }
+    #countdown {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      font-size: 1.4em;
+      margin-top: 10px;
+    }
+    #countdown div { text-align: center; }
+    #countdown div span { display: block; font-size: 2em; }
+    form { display: grid; gap: 15px; }
+    form label { font-weight: bold; }
+    form input[type=text],
+    form textarea,
+    form select {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .radio-group { display: flex; flex-direction: column; gap: 5px; }
+    .radio-group label { font-weight: normal; }
+    button {
+      padding: 12px 25px;
+      font-size: 1.1em;
+      background: #d3a58f;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      justify-self: start;
+    }
+    button:hover { background: #b88975; }
+    .map-container {
+      width: 100%;
+      height: 300px;
+      overflow: hidden;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    .map-container iframe {
+      width: 100%;
+      height: 100%;
+      border:0;
+    }
+    .tips { list-style: decimal inside; margin-top: 10px; }
+    .tips li { margin-bottom: 8px; }
+  </style>
+</head>
+<body>
+
+<div class="wrapper">
+
+  <header>
+    <h1>Дарья &amp; Тимур</h1>
+    <p>9 августа 2025</p>
+    <div id="countdown">
+      <div><span id="days">--</span>дней</div>
+      <div><span id="hours">--</span>часов</div>
+      <div><span id="minutes">--</span>мин</div>
+      <div><span id="seconds">--</span>сек</div>
+    </div>
+  </header>
+
+  <section>
+    <p>Дорогие друзья и близкие, приглашаем вас разделить с нами этот особенный день!
+    Совсем скоро состоится наша камерная свадьба в <strong>Купеческой усадьбе «Бирский берег», г. Бирск, улица Забелье, 1</strong>.</p>
+    <p>Формат: выездная церемония и банкет на природе. 
+    Дресс-код: для нас главное — ваше присутствие! Но будем рады, если вы поддержите нашу цветовую гамму и стиль.</p>
+  </section>
+
+  <section>
+    <h2>Как добраться</h2>
+    <div class="map-container">
+      <iframe
+        src="https://www.google.com/maps?q=г.Бирск,+улица+Забелье+1&output=embed"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </section>
+
+  <section>
+    <h2>Подсказки гостям</h2>
+    <ol class="tips">
+      <li><strong>Сюрпризы.</strong> Возьмите с собой отличное настроение! Приветствуются поздравления, участие в интерактивах, творческие выступления — обращайтесь к ведущему с вашими идеями.</li>
+      <li><strong>Что дарить.</strong> Будем рады вкладу в семейный бюджет — он поможет воплотить нашу мечту.</li>
+      <li><strong>Маленькие гости.</strong> Просим наслаждаться праздником вдвоём — будет здорово провести день в кругу взрослых.</li>
+      <li><strong>О чём не забыть.</strong> Торжество у реки: возьмите тёплые вещи, спрей от насекомых, удобную обувь. И если останетесь на утро — купальники и удочки пригодятся!</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Подтвердите участие</h2>
+    <form action="#" method="POST">
+      <label for="name">1. ФИО:</label>
+      <input type="text" id="name" name="ФИО" required />
+
+      <label>2. Планируете ли присутствовать?</label>
+      <div class="radio-group">
+        <label><input type="radio" name="Присутствие" value="Да, с удовольствием!" required /> Да, с удовольствием!</label>
+        <label><input type="radio" name="Присутствие" value="Не смогу приехать..." /> Не смогу приехать...</label>
+        <label><input type="radio" name="Присутствие" value="Приеду, но поздно" /> Приеду, но поздно</label>
+      </div>
+
+      <label for="alcohol">3. Предпочитаемый алкоголь (можно несколько):</label>
+      <select id="alcohol" name="Алкоголь" multiple>
+        <option>Шампанское</option>
+        <option>Вино белое полусладкое</option>
+        <option>Вино белое сухое</option>
+        <option>Вино красное полусладкое</option>
+        <option>Вино красное сухое</option>
+        <option>Пиво</option>
+        <option>Коньяк</option>
+        <option>Водка</option>
+        <option>Не пью</option>
+      </select>
+
+      <label for="allergy">4. Есть ли у вас аллергия? Укажите на что:</label>
+      <textarea id="allergy" name="Аллергия" rows="2"></textarea>
+
+      <label>5. Останетесь ли с ночёвкой?</label>
+      <div class="radio-group">
+        <label><input type="radio" name="Ночёвка" value="Останусь с вами до последнего" required /> Останусь с вами до последнего</label>
+        <label><input type="radio" name="Ночёвка" value="Поеду домой в свою постельку" /> Поеду домой в свою постельку</label>
+      </div>
+
+      <button type="submit">Отправить</button>
+    </form>
+  </section>
+
+</div>
+
+<script>
+const targetDate = new Date('2025-08-09T16:00:00');
+function updateTimer() {
+  const now = new Date();
+  const diff = targetDate - now;
+  if (diff <= 0) return;
+  const d = Math.floor(diff/1000/60/60/24);
+  const h = Math.floor(diff/1000/60/60)%24;
+  const m = Math.floor(diff/1000/60)%60;
+  const s = Math.floor(diff/1000)%60;
+  document.getElementById('days').textContent = d;
+  document.getElementById('hours').textContent = h;
+  document.getElementById('minutes').textContent = m;
+  document.getElementById('seconds').textContent = s;
+}
+setInterval(updateTimer, 1000);
+updateTimer();
+</script>
+
+</body>
+</html>
