@@ -2,242 +2,213 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Приглашение на свадьбу</title>
-
-  <!-- Подключение шрифта Dancing Script -->
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet" />
-
-  <!-- Подключение AOS -->
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Свадьба Дарьи и Тимура</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
   <style>
-    /* Reset */
-    * {
-      box-sizing: border-box;
-    }
-
+    * { margin:0; padding:0; box-sizing:border-box; }
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #f9f5f1;
-      margin: 0;
-      padding: 20px;
-      color: #5a4632;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      font-family: 'Georgia', serif;
+      color: #333;
+      background: url('background.jpg') center/cover no-repeat fixed;
+      position: relative;
       min-height: 100vh;
-      overflow-x: hidden;
+      transition: background-color 0.3s, color 0.3s;
     }
-
+    body.night-mode {
+      background: #1c1c1c;
+      color: #f0e6d2;
+    }
+    .wrapper {
+      background: rgba(255,255,255,0.85);
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+      transition: background 0.3s;
+    }
+    body.night-mode .wrapper {
+      background: rgba(0,0,0,0.6);
+    }
     header {
       text-align: center;
-      margin: 40px 0 30px 0;
-      position: relative;
-      z-index: 10;
+      padding: 40px 20px;
     }
+    header h1 { font-size: 3em; margin-bottom: 0.2em; }
+    header p { font-size: 1.2em; }
 
-    h1 {
-      font-family: 'Dancing Script', cursive;
-      font-size: 3rem;
-      margin-bottom: 10px;
-      color: #b86b53;
-      overflow: hidden;
-      white-space: nowrap;
-      border-right: 3px solid #b86b53;
-      width: 0;
-      animation:
-        typing 3s steps(30, end) forwards,
-        blinkCaret 0.75s step-end infinite;
-    }
+    section { margin: 30px 0; line-height: 1.6; }
+    h2 { font-size: 1.8em; margin-bottom: 0.5em; }
 
-    p.date {
-      font-size: 1.2rem;
-      font-weight: 600;
-      margin: 5px 0 30px 0;
-      color: #92684a;
+    #countdown {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      font-size: 1.4em;
+      margin-top: 10px;
     }
+    #countdown div { text-align: center; }
+    #countdown div span { display: block; font-size: 2em; }
 
-    section.details {
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 10px 40px rgba(180,138,121,0.2);
-      max-width: 450px;
-      padding: 30px 25px;
-      margin-bottom: 30px;
-      text-align: center;
-      transition: box-shadow 0.3s ease;
-      position: relative;
-      z-index: 10;
-    }
-    section.details:hover {
-      box-shadow: 0 15px 50px rgba(180,138,121,0.35);
-    }
-    section.details p {
-      margin: 15px 0;
-      font-size: 1.1rem;
-      line-height: 1.5;
-    }
-
-    .dress-code {
-      font-style: italic;
-      color: #92684a;
-    }
-
-    .btn-container {
-      margin-bottom: 40px;
-      z-index: 10;
-    }
-
-    .btn-link {
-      display: inline-block;
-      background-color: #b86b53;
-      color: white;
-      padding: 14px 28px;
-      font-size: 1.2rem;
-      font-weight: 700;
-      border-radius: 8px;
-      text-decoration: none;
-      transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
-      box-shadow: 0 6px 12px rgba(184,107,83,0.4);
-    }
-    .btn-link:hover,
-    .btn-link:focus {
-      background-color: #a15d47;
-      box-shadow: 0 8px 20px rgba(161,93,71,0.7);
-      transform: scale(1.07);
-      outline: none;
-    }
-
-    iframe {
-      border: none;
+    form { display: grid; gap: 15px; }
+    form label { font-weight: bold; }
+    form input[type=text],
+    form textarea,
+    form select {
       width: 100%;
-      max-width: 600px;
-      height: 700px;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(184,107,83,0.3);
-      margin-bottom: 40px;
-      position: relative;
-      z-index: 10;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .radio-group { display: flex; flex-direction: column; gap: 5px; }
+    .radio-group label { font-weight: normal; }
+
+    button {
+      padding: 12px 25px;
+      font-size: 1.1em;
+      background: #d3a58f;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      justify-self: start;
+    }
+    button:hover { background: #b88975; }
+
+    .map-container {
+      width: 100%;
+      height: 300px;
+      overflow: hidden;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    .map-container iframe {
+      width: 100%;
+      height: 100%;
+      border:0;
     }
 
-    footer {
-      margin-top: auto;
-      padding: 20px;
-      font-size: 0.9rem;
-      color: #8a6f56;
-      text-align: center;
-      max-width: 600px;
-      position: relative;
-      z-index: 10;
-    }
+    .tips { list-style: decimal inside; margin-top: 10px; }
+    .tips li { margin-bottom: 8px; }
 
-    /* Параллакс-эффект для фона */
-    .background-parallax {
+    .toggle-mode {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1280&q=80') no-repeat center center / cover;
-      filter: brightness(0.7);
-      z-index: 1;
-      transform: translateZ(0);
-      will-change: transform;
+      top: 10px;
+      right: 10px;
+      background: #d3a58f;
+      border: none;
+      color: white;
+      padding: 10px;
+      border-radius: 8px;
+      cursor: pointer;
     }
 
-    /* Анимация текста "печать" */
-    @keyframes typing {
-      from { width: 0 }
-      to { width: 100% }
-    }
-    @keyframes blinkCaret {
-      50% { border-color: transparent }
-    }
-
-    /* Анимация появления (AOS) стили дополнительно */
-    [data-aos] {
-      opacity: 0;
-      transition-property: opacity, transform;
-      transition-timing-function: ease;
-      transition-duration: 1s;
-    }
-
-    [data-aos].aos-animate {
-      opacity: 1;
-    }
-
-    /* Для мобильных */
-    @media (max-width: 480px) {
-      h1 {
-        font-size: 2.2rem;
-        border-right: 2px solid #b86b53;
-      }
-      section.details {
-        max-width: 90%;
-        padding: 20px;
-      }
-      iframe {
-        height: 600px;
-      }
-    }
+    audio { display: block; margin: 20px auto; }
   </style>
 </head>
 <body>
 
-  <div class="background-parallax" id="bg-parallax"></div>
+<button class="toggle-mode" onclick="toggleMode()">Переключить режим</button>
+<audio controls autoplay loop>
+  <source src="music.mp3" type="audio/mpeg">
+  Ваш браузер не поддерживает аудио.
+</audio>
 
-  <header data-aos="fade-down">
-    <h1>Приглашение на нашу свадьбу</h1>
-    <p class="date">9 августа 2025 года, 15:00</p>
+<div class="wrapper animate__animated animate__fadeIn">
+  <header>
+    <h1>Дарья &amp; Тимур</h1>
+    <p>9 августа 2025</p>
+    <div id="countdown">
+      <div><span id="days">--</span>дней</div>
+      <div><span id="hours">--</span>часов</div>
+      <div><span id="minutes">--</span>мин</div>
+      <div><span id="seconds">--</span>сек</div>
+    </div>
   </header>
 
-  <section class="details" data-aos="fade-up" data-aos-duration="1200">
-    <p>Мы, <strong>Тимур и Дарья</strong>, рады пригласить вас отпраздновать с нами начало нашей новой жизни!</p>
-    <p><strong>Место:</strong> Купеческая усадьба «Бирский берег», г. Уфа</p>
-    <p><strong>Формат:</strong> Выездная церемония и банкет на природе</p>
-    <p class="dress-code"><strong>Дресс-код:</strong> однотонные пастельные тона</p>
+  <section>
+    <p>Дорогие друзья и близкие, приглашаем вас разделить с нами этот особенный день! Совсем скоро состоится наша камерная свадьба в <strong>Купеческой усадьбе «Бирский берег»</strong>.</p>
+    <p>Формат: выездная церемония и банкет на природе. Дресс-код: для нас главное — ваше присутствие! Но будем рады, если вы поддержите нашу цветовую гамму и стиль.</p>
   </section>
 
-  <div class="btn-container" data-aos="zoom-in" data-aos-duration="800">
-    <a
-      href="https://docs.google.com/forms/d/e/1FAIpQLSco6FZtVHCTw7_kC48h1YRF9BBHLB12fj8kW8P2xhSWmXR_6Q/viewform?usp=dialog"
-      target="_blank"
-      rel="noopener"
-      class="btn-link"
-      >Подтвердить участие (Google Форма)</a
-    >
-  </div>
+  <section>
+    <h2>Как добраться</h2>
+    <div class="map-container">
+      <iframe src="https://www.google.com/maps?q=Купеческая+усадьба+Бирский+берег+Уфа&output=embed" allowfullscreen></iframe>
+    </div>
+  </section>
 
-  <iframe
-    src="https://docs.google.com/forms/d/e/1FAIpQLSco6FZtVHCTw7_kC48h1YRF9BBHLB12fj8kW8P2xhSWmXR_6Q/viewform?embedded=true"
-    frameborder="0"
-    marginheight="0"
-    marginwidth="0"
-    data-aos="fade-up"
-    data-aos-duration="1500"
-    >Загрузка…</iframe
-  >
+  <section>
+    <h2>Подсказки гостям</h2>
+    <ol class="tips">
+      <li><strong>Сюрпризы.</strong> Возьмите с собой отличное настроение! Приветствуются поздравления, участие в интерактивах, творческие выступления — обращайтесь к ведущему с вашими идеями.</li>
+      <li><strong>Что дарить.</strong> Будем рады вкладу в семейный бюджет — он поможет воплотить нашу мечту.</li>
+      <li><strong>Маленькие гости.</strong> Просим наслаждаться праздником вдвоём — будет здорово провести день в кругу взрослых.</li>
+      <li><strong>О чём не забыть.</strong> Торжество у реки: возьмите тёплые вещи, спрей от насекомых, удобную обувь. И если останетесь на утро — купальники и удочки пригодятся!</li>
+    </ol>
+  </section>
 
-  <footer data-aos="fade-up" data-aos-duration="1200">
-    <p>
-      Если есть вопросы, пишите: <a href="mailto:freeklys17@gmail.com"
-        >freeklys17@gmail.com</a
-      >
-    </p>
-  </footer>
+  <section>
+    <h2>Подтвердите участие</h2>
+    <form action="https://formspree.io/f/mkgbrvgd" method="POST">
+      <label for="name">1. ФИО:</label>
+      <input type="text" id="name" name="ФИО" required />
 
-  <!-- Подключение AOS и JS для параллакса -->
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>
-    AOS.init({ once: true });
+      <label>2. Планируете ли присутствовать?</label>
+      <div class="radio-group">
+        <label><input type="radio" name="Присутствие" value="Да, с удовольствием!" required /> Да, с удовольствием!</label>
+        <label><input type="radio" name="Присутствие" value="Не смогу приехать..." /> Не смогу приехать...</label>
+        <label><input type="radio" name="Присутствие" value="Приеду, но поздно" /> Приеду, но поздно</label>
+      </div>
 
-    // Параллакс для фона
-    window.addEventListener('scroll', () => {
-      const scrolled = window.pageYOffset;
-      const bg = document.getElementById('bg-parallax');
-      bg.style.transform = `translateY(${scrolled * 0.3}px)`;
-    });
-  </script>
+      <label for="alcohol">3. Предпочитаемый алкоголь (можно несколько):</label>
+      <select id="alcohol" name="Алкоголь" multiple>
+        <option>Шампанское</option>
+        <option>Вино белое полусладкое</option>
+        <option>Вино белое сухое</option>
+        <option>Вино красное полусладкое</option>
+        <option>Вино красное сухое</option>
+        <option>Пиво</option>
+        <option>Коньяк</option>
+        <option>Водка</option>
+        <option>Не пью</option>
+      </select>
+
+      <label for="allergy">4. Есть ли у вас аллергия? Укажите на что:</label>
+      <textarea id="allergy" name="Аллергия" rows="2"></textarea>
+
+      <label>5. Останетесь ли с ночёвкой?</label>
+      <div class="radio-group">
+        <label><input type="radio" name="Ночёвка" value="Останусь с вами до последнего" required /> Останусь с вами до последнего</label>
+        <label><input type="radio" name="Ночёвка" value="Поеду домой в свою постельку" /> Поеду домой в свою постельку</label>
+      </div>
+
+      <button type="submit">Отправить</button>
+    </form>
+  </section>
+</div>
+
+<script>
+const targetDate = new Date('2025-08-09T16:00:00');
+function updateTimer() {
+  const now = new Date();
+  const diff = targetDate - now;
+  if (diff <= 0) return;
+  const d = Math.floor(diff/1000/60/60/24);
+  const h = Math.floor(diff/1000/60/60)%24;
+  const m = Math.floor(diff/1000/60)%60;
+  const s = Math.floor(diff/1000)%60;
+  document.getElementById('days').textContent = d;
+  document.getElementById('hours').textContent = h;
+  document.getElementById('minutes').textContent = m;
+  document.getElementById('seconds').textContent = s;
+}
+setInterval(updateTimer, 1000);
+updateTimer();
+
+function toggleMode() {
+  document.body.classList.toggle('night-mode');
+}
+</script>
+
 </body>
 </html>
