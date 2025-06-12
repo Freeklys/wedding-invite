@@ -2,398 +2,127 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Свадьба Дарьи и Тимура</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Тимур и Дарья</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap" rel="stylesheet">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
-
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-
-    body, html {
-      height: 100%;
-      font-family: 'Playfair Display', serif;
-      color: #4b3b34;
-      background: url('https://i.imgur.com/K34xTrq.jpg') center center / cover no-repeat fixed;
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #fffaf5;
+      color: #4e4e4e;
       overflow-x: hidden;
-      perspective: 1px;
-      perspective-origin: center center;
     }
-
-    /* Параллакс эффект */
-    .parallax-bg {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: inherit;
-      background-attachment: fixed;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
-      transform-style: preserve-3d;
-      z-index: -1;
-      will-change: transform;
-    }
-
-    .overlay {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(255 244 230 / 0.4);
-      z-index: 0;
-    }
-
-    .wrapper {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 50px 20px 80px;
-      background: rgba(255 255 255 / 0.7);
-      border-radius: 12px;
-      box-shadow: 0 0 30px rgba(75,59,52,0.2);
-      position: relative;
-      z-index: 1;
+    header {
+      height: 100vh;
+      background: url('hero.jpg') center/cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       text-align: center;
-      animation: fadeSlideIn 1.5s ease forwards;
-      opacity: 0;
-      transform: translateY(20px);
+      color: white;
+      animation: fadeIn 2s ease-out;
     }
-
-    @keyframes fadeSlideIn {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
     header h1 {
-      font-size: 4rem;
-      margin-bottom: 0.1em;
-      color: #6b5447;
-      text-shadow: 1px 1px 3px #d8c8ba;
+      font-size: 3rem;
+      margin-bottom: 1rem;
     }
-
     header p {
-      font-size: 1.3rem;
-      color: #7a665d;
-      margin-bottom: 30px;
-      font-weight: 500;
+      font-size: 1.5rem;
     }
-
-    #countdown {
+    section {
+      padding: 80px 20px;
+      max-width: 900px;
+      margin: auto;
+      animation: fadeUp 1.5s ease-out;
+    }
+    section h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    .img-sample {
+      width: 100%;
+      max-width: 600px;
+      margin: 20px auto;
+      display: block;
+      border-radius: 8px;
+    }
+    footer {
+      text-align: center;
+      padding: 30px;
+      font-size: 0.9rem;
+      color: #888;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0;} to {opacity: 1;}
+    }
+    @keyframes fadeUp {
+      from {transform: translateY(30px); opacity: 0;} to {transform: translateY(0); opacity: 1;}
+    }
+    .rsvp {
       display: flex;
       justify-content: center;
-      gap: 35px;
-      font-size: 1.4rem;
-      color: #6b5447;
-      margin-bottom: 45px;
-      user-select: none;
+      margin-top: 30px;
     }
-
-    #countdown div {
-      background: #f7eedeaa;
-      padding: 15px 25px;
-      border-radius: 10px;
-      box-shadow: inset 0 0 5px rgba(107,84,71,0.3);
+    .rsvp a {
+      background-color: #d7bfa5;
+      padding: 12px 24px;
+      border-radius: 30px;
+      color: white;
+      font-weight: bold;
+      text-decoration: none;
+      transition: background 0.3s;
     }
-
-    #countdown div span {
-      display: block;
-      font-size: 3rem;
-      font-weight: 700;
-      line-height: 1;
-      color: #6b5447;
-    }
-
-    section p {
-      font-size: 1.1rem;
-      line-height: 1.6;
-      color: #6b5447;
-      margin-bottom: 1.3em;
-      max-width: 650px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    h2 {
-      font-size: 2rem;
-      color: #6b5447;
-      margin-bottom: 15px;
-      font-weight: 700;
-      text-shadow: 0 0 2px #fff5e3;
-    }
-
-    .map-container {
-      width: 100%;
-      max-width: 650px;
-      height: 320px;
-      margin: 20px auto 40px;
-      border-radius: 15px;
-      overflow: hidden;
-      box-shadow: 0 0 20px rgba(107,84,71,0.2);
-      border: 3px solid #d9cfc7;
-    }
-
-    .map-container iframe {
-      width: 100%;
-      height: 100%;
-      border: 0;
-      filter: brightness(0.9);
-    }
-
-    ol.tips {
-      max-width: 650px;
-      margin: 0 auto 50px;
-      padding-left: 1.2em;
-      color: #6b5447;
-      font-size: 1.1rem;
-      text-align: left;
-      line-height: 1.5;
-    }
-
-    ol.tips li {
-      margin-bottom: 12px;
-    }
-
-    form {
-      max-width: 650px;
-      margin: 0 auto 60px;
-      background: rgba(255 255 255 / 0.8);
-      padding: 25px 30px 35px;
-      border-radius: 15px;
-      box-shadow: 0 0 25px rgba(107,84,71,0.2);
-      text-align: left;
-    }
-
-    form label {
-      display: block;
-      font-weight: 600;
-      margin-bottom: 6px;
-      color: #6b5447;
-      font-size: 1.05rem;
-    }
-
-    form input[type=text],
-    form textarea {
-      width: 100%;
-      padding: 10px 15px;
-      border: 2px solid #d9cfc7;
-      border-radius: 10px;
-      font-size: 1rem;
-      color: #5a4b44;
-      font-family: 'Georgia', serif;
-      margin-bottom: 18px;
-      transition: border-color 0.3s;
-    }
-
-    form input[type=text]:focus,
-    form textarea:focus {
-      border-color: #b8967b;
-      outline: none;
-    }
-
-    .checkbox-group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 15px;
-      margin-bottom: 20px;
-    }
-
-    .checkbox-group label {
-      flex: 1 1 45%;
-      cursor: pointer;
-      font-weight: 500;
-      font-size: 1rem;
-      color: #6b5447;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .checkbox-group input[type=checkbox] {
-      width: 18px;
-      height: 18px;
-      cursor: pointer;
-    }
-
-    .radio-group {
-      margin-bottom: 20px;
-    }
-
-    .radio-group label {
-      font-weight: 500;
-      font-size: 1rem;
-      color: #6b5447;
-      display: block;
-      cursor: pointer;
-      margin-bottom: 8px;
-      user-select: none;
-    }
-
-    .radio-group input[type=radio] {
-      margin-right: 10px;
-      cursor: pointer;
-      width: 18px;
-      height: 18px;
-    }
-
-    button {
-      background: #cda978;
-      color: #fff;
-      font-size: 1.2rem;
-      padding: 14px 28px;
-      border: none;
-      border-radius: 12px;
-      cursor: pointer;
-      font-weight: 700;
-      transition: background-color 0.3s ease;
-      box-shadow: 0 6px 12px rgba(205,169,120,0.6);
-      user-select: none;
-    }
-
-    button:hover {
-      background-color: #b3936e;
-      box-shadow: 0 8px 16px rgba(179,147,110,0.8);
-    }
-
-    @media (max-width: 700px) {
-      header h1 {
-        font-size: 2.8rem;
-      }
-      #countdown {
-        gap: 15px;
-        font-size: 1.1rem;
-      }
-      #countdown div span {
-        font-size: 2rem;
-      }
-      .checkbox-group label {
-        flex: 1 1 100%;
-      }
-      form {
-        padding: 20px 15px 30px;
-      }
+    .rsvp a:hover {
+      background-color: #bfa68e;
     }
   </style>
 </head>
 <body>
-  <div class="parallax-bg"></div>
-  <div class="overlay"></div>
+  <header>
+    <h1>Тимур и Дарья</h1>
+    <p>Мы приглашаем вас на нашу свадьбу</p>
+  </header>
 
-  <div class="wrapper" role="main" aria-label="Приглашение на свадьбу Дарьи и Тимура">
-    <header>
-      <h1>Дарья &amp; Тимур</h1>
-      <p>9 августа 2025</p>
-      <div id="countdown" aria-live="polite" aria-atomic="true" aria-label="Обратный отсчет до свадьбы">
-        <div><span id="days">--</span> дней</div>
-        <div><span id="hours">--</span> часов</div>
-        <div><span id="minutes">--</span> мин</div>
-        <div><span id="seconds">--</span> сек</div>
-      </div>
-    </header>
+  <section>
+    <h2>Дата и место</h2>
+    <p>9 августа 2025 года, Купеческая усадьба «Бирский берег», Уфа</p>
+    <img src="sample1.jpg" alt="Место свадьбы" class="img-sample">
+  </section>
 
-    <section>
-      <p>Дорогие друзья и близкие, приглашаем вас разделить с нами этот особенный день!
-      Совсем скоро состоится наша камерная свадьба в <strong>Купеческой усадьбе «Бирский берег», г. Бирск, улица Забелье, 1</strong>.</p>
-      <p>Формат: выездная церемония и банкет на природе. 
-      Дресс-код: для нас главное — ваше присутствие! Но будем рады, если вы поддержите нашу цветовую гамму и стиль.</p>
-    </section>
+  <section>
+    <h2>Программа дня</h2>
+    <ul>
+      <li>16:00 — Сбор гостей</li>
+      <li>17:00 — Выездная церемония</li>
+      <li>18:00 — Банкет на природе</li>
+    </ul>
+    <img src="sample2.jpg" alt="Программа" class="img-sample">
+  </section>
 
-    <section>
-      <h2>Как добраться</h2>
-      <div class="map-container" aria-label="Карта места проведения свадьбы">
-        <iframe
-          src="https://www.google.com/maps?q=г.Бирск,+улица+Забелье+1&output=embed"
-          allowfullscreen=""
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          title="Карта места проведения свадьбы Дарьи и Тимура">
-        </iframe>
-      </div>
-    </section>
+  <section>
+    <h2>Дресс-код</h2>
+    <p>Пастельные однотонные оттенки</p>
+    <img src="dresscode.jpg" alt="Дресс-код" class="img-sample">
+  </section>
 
-    <section>
-      <h2>Подсказки гостям</h2>
-      <ol class="tips">
-        <li><strong>Сюрпризы.</strong> Возьмите с собой отличное настроение! Приветствуются поздравления, участие в интерактивах, творческие выступления — обращайтесь к ведущему с вашими идеями.</li>
-        <li><strong>Что дарить.</strong> Будем рады вкладу в семейный бюджет — он поможет воплотить нашу мечту.</li>
-        <li><strong>Маленькие гости.</strong> Просим наслаждаться праздником вдвоём — будет здорово провести день в кругу взрослых.</li>
-        <li><strong>О чём не забыть.</strong> Торжество у реки: возьмите тёплые вещи, спрей от насекомых, удобную обувь. И если останетесь на утро — купальники и удочки пригодятся!</li>
-      </ol>
-    </section>
+  <section>
+    <h2>Пожалуйста, подтвердите своё присутствие</h2>
+    <div class="rsvp">
+      <a href="https://formspree.io/f/your-form-id" target="_blank">Ответить</a>
+    </div>
+  </section>
 
-    <section>
-      <h2>Подтвердите участие</h2>
-      <form action="https://formspree.io/f/mkgbrvgd" method="POST" aria-label="Форма подтверждения участия на свадьбу">
-        <label for="name">1. ФИО:</label>
-        <input type="text" id="name" name="ФИО" required autocomplete="name" />
-
-        <label>2. Планируете ли присутствовать?</label>
-        <div class="radio-group" role="radiogroup" aria-required="true">
-          <label><input type="radio" name="Присутствие" value="Да, с удовольствием!" required /> Да, с удовольствием!</label>
-          <label><input type="radio" name="Присутствие" value="Не смогу приехать..." /> Не смогу приехать...</label>
-          <label><input type="radio" name="Присутствие" value="Приеду, но поздно" /> Приеду, но поздно</label>
-        </div>
-
-        <label>3. Предпочитаемый алкоголь (можно несколько):</label>
-        <div class="checkbox-group" role="group" aria-label="Выбор алкоголя">
-          <label><input type="checkbox" name="Алкоголь" value="Шампанское" /> Шампанское</label>
-          <label><input type="checkbox" name="Алкоголь" value="Вино белое полусладкое" /> Вино белое полусладкое</label>
-          <label><input type="checkbox" name="Алкоголь" value="Вино белое сухое" /> Вино белое сухое</label>
-          <label><input type="checkbox" name="Алкоголь" value="Вино красное полусладкое" /> Вино красное полусладкое</label>
-          <label><input type="checkbox" name="Алкоголь" value="Вино красное сухое" /> Вино красное сухое</label>
-          <label><input type="checkbox" name="Алкоголь" value="Пиво" /> Пиво</label>
-          <label><input type="checkbox" name="Алкоголь" value="Коньяк" /> Коньяк</label>
-          <label><input type="checkbox" name="Алкоголь" value="Водка" /> Водка</label>
-          <label><input type="checkbox" name="Алкоголь" value="Не пью" /> Не пью</label>
-        </div>
-
-        <label for="allergy">4. Есть ли у вас аллергия? Укажите на что:</label>
-        <textarea id="allergy" name="Аллергия" rows="2" placeholder="Например, орехи, молочные продукты"></textarea>
-
-        <label>5. Останетесь ли с ночёвкой?</label>
-        <div class="radio-group" role="radiogroup" aria-required="true">
-          <label><input type="radio" name="Ночёвка" value="Останусь с вами до последнего" required /> Останусь с вами до последнего</label>
-          <label><input type="radio" name="Ночёвка" value="Поеду домой в свою постельку" /> Поеду домой в свою постельку</label>
-        </div>
-
-        <button type="submit">Отправить</button>
-      </form>
-    </section>
-  </div>
-
-  <script>
-    const targetDate = new Date('2025-08-09T16:00:00');
-
-    function updateTimer() {
-      const now = new Date();
-      const diff = targetDate - now;
-      if (diff <= 0) {
-        document.getElementById('days').textContent = 0;
-        document.getElementById('hours').textContent = 0;
-        document.getElementById('minutes').textContent = 0;
-        document.getElementById('seconds').textContent = 0;
-        return;
-      }
-      const d = Math.floor(diff / 1000 / 60 / 60 / 24);
-      const h = Math.floor(diff / 1000 / 60 / 60) % 24;
-      const m = Math.floor(diff / 1000 / 60) % 60;
-      const s = Math.floor(diff / 1000) % 60;
-      document.getElementById('days').textContent = d;
-      document.getElementById('hours').textContent = h;
-      document.getElementById('minutes').textContent = m;
-      document.getElementById('seconds').textContent = s;
-    }
-
-    setInterval(updateTimer, 1000);
-    updateTimer();
-
-    // Параллакс фона при скролле
-    window.addEventListener('scroll', () => {
-      const scrolled = window.scrollY;
-      const bg = document.querySelector('.parallax-bg');
-      bg.style.transform = `translateZ(-1px) translateY(${scrolled * 0.5}px) scale(1.1)`;
-    });
-  </script>
+  <footer>
+    С любовью, Тимур и Дарья
+  </footer>
 </body>
 </html>
