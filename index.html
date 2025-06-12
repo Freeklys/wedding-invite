@@ -1,112 +1,251 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-  <title>Свадьба Дарьи и Тимура</title>
-  <style>
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body {
-      font-family: 'Georgia', serif;
-      color: #333;
-      background: url('https://i.imgur.com/K34xTrq.jpg') center center / cover no-repeat fixed;
-      position: relative;
-      min-height: 100vh;
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Свадьба Дарьи и Тимура</title>
+<style>
+  /* Сброс */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Georgia', serif;
+    color: #5b3a29;
+    background: url('https://i.imgur.com/K34xTrq.jpg') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .overlay {
+    background: rgba(255 255 255 / 0.85);
+    max-width: 900px;
+    margin: auto;
+    padding: 40px 20px 60px 20px;
+    min-height: 100vh;
+    box-sizing: border-box;
+    position: relative;
+  }
+
+  /* Анимация плавного подъема */
+  h1, p {
+    opacity: 0;
+    transform: translateY(30px);
+    animation-fill-mode: forwards;
+  }
+
+  h1 {
+    font-size: 3.5em;
+    animation: fadeUp 1s ease forwards;
+    animation-delay: 0.5s;
+    text-align: center;
+    letter-spacing: 3px;
+    position: relative;
+  }
+
+  /* Мерцание */
+  h1.shimmer::before {
+    content: "";
+    position: absolute;
+    top: 0; left: -100%;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.5) 50%, transparent 100%);
+    animation: shimmerMove 3s infinite;
+  }
+
+  p {
+    font-size: 1.4em;
+    margin-top: 10px;
+    animation: fadeUp 1s ease forwards;
+    animation-delay: 1.5s;
+    text-align: center;
+    color: #7b5e4d;
+  }
+
+  @keyframes fadeUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
-    .wrapper {
-      background: rgba(255,255,255,0.85);
-      max-width: 900px;
-      margin: auto;
-      padding: 20px;
+  }
+
+  @keyframes shimmerMove {
+    100% {
+      left: 100%;
     }
-    header {
-      text-align: center;
-      padding: 40px 20px;
+  }
+
+  section {
+    margin: 40px 0;
+    line-height: 1.6;
+    color: #4d3b2f;
+  }
+
+  h2 {
+    font-size: 1.9em;
+    margin-bottom: 15px;
+    color: #6e4f3a;
+  }
+
+  /* Карточка с подсказками */
+  .tips {
+    list-style: decimal inside;
+    margin-top: 10px;
+  }
+  .tips li {
+    margin-bottom: 12px;
+  }
+
+  /* Карта */
+  .map-container {
+    width: 100%;
+    height: 320px;
+    overflow: hidden;
+    border-radius: 8px;
+    border: 1px solid #cca88a;
+    box-shadow: 0 0 15px rgba(180,150,120,0.3);
+  }
+  .map-container iframe {
+    width: 100%;
+    height: 100%;
+    border:0;
+  }
+
+  /* Таймер обратного отсчёта */
+  #countdown {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    font-size: 1.4em;
+    margin-top: 15px;
+    color: #6b4c37;
+  }
+  #countdown div {
+    text-align: center;
+    background: rgba(219,179,148,0.7);
+    padding: 10px 15px;
+    border-radius: 10px;
+    box-shadow: inset 0 0 5px rgba(255,255,255,0.5);
+    min-width: 70px;
+  }
+  #countdown div span {
+    display: block;
+    font-size: 2.2em;
+    font-weight: 700;
+  }
+
+  /* Форма */
+  form {
+    display: grid;
+    gap: 18px;
+    font-size: 1.1em;
+    color: #5a3e27;
+  }
+  label {
+    font-weight: 600;
+  }
+  input[type=text], textarea, select {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1.8px solid #c8a27c;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 1em;
+    background: #fef9f5;
+    color: #5a3e27;
+    transition: border-color 0.3s ease;
+  }
+  input[type=text]:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: #b7794f;
+    background: #fff;
+  }
+
+  /* Радио-группа */
+  .radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .radio-group label {
+    font-weight: normal;
+    cursor: pointer;
+  }
+  .radio-group input[type=radio] {
+    margin-right: 8px;
+    cursor: pointer;
+  }
+
+  /* Список пунктов вместо мультиселекта */
+  .checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .checkbox-group label {
+    cursor: pointer;
+    background: #e3cbbd;
+    padding: 8px 12px;
+    border-radius: 6px;
+    user-select: none;
+    transition: background-color 0.3s ease;
+  }
+  .checkbox-group input[type=checkbox] {
+    margin-right: 6px;
+    cursor: pointer;
+  }
+  .checkbox-group input[type=checkbox]:checked + span {
+    background: #d3a58f;
+    color: white;
+  }
+
+  /* Кнопка */
+  button {
+    padding: 14px 28px;
+    font-size: 1.15em;
+    background: #b7794f;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: fit-content;
+  }
+  button:hover {
+    background: #9e5f2f;
+  }
+
+  /* Мобильная адаптация */
+  @media (max-width: 480px) {
+    h1 {
+      font-size: 2.6em;
     }
-    header h1 { font-size: 3em; margin-bottom: 0.2em; }
-    header p { font-size: 1.2em; }
-    section { margin: 30px 0; line-height: 1.6; }
-    h2 { font-size: 1.8em; margin-bottom: 0.5em; }
-    #countdown {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      font-size: 1.4em;
-      margin-top: 10px;
-    }
-    #countdown div { text-align: center; }
-    #countdown div span { display: block; font-size: 2em; }
-    form { display: grid; gap: 15px; }
-    form label { font-weight: bold; }
-    form input[type=text],
-    form textarea {
-      width: 100%;
-      padding: 8px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-    .checkbox-group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 5px;
-    }
-    .checkbox-group label {
-      font-weight: normal;
-      background: #f5e9e0;
-      border-radius: 4px;
-      padding: 5px 10px;
-      cursor: pointer;
-      user-select: none;
-      border: 1px solid transparent;
-      transition: background 0.3s, border-color 0.3s;
-    }
-    .checkbox-group input[type="checkbox"] {
-      margin-right: 6px;
-      cursor: pointer;
-    }
-    .checkbox-group input[type="checkbox"]:checked + label {
-      background: #d3a58f;
-      color: white;
-      border-color: #b88975;
-    }
-    .radio-group { display: flex; flex-direction: column; gap: 5px; }
-    .radio-group label { font-weight: normal; cursor: pointer; }
-    button {
-      padding: 12px 25px;
+    p {
       font-size: 1.1em;
-      background: #d3a58f;
-      color: #fff;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      justify-self: start;
-      width: fit-content;
     }
-    button:hover { background: #b88975; }
-    .map-container {
-      width: 100%;
-      height: 300px;
-      overflow: hidden;
-      border-radius: 6px;
-      border: 1px solid #ccc;
+    #countdown {
+      flex-wrap: wrap;
+      gap: 15px;
     }
-    .map-container iframe {
-      width: 100%;
-      height: 100%;
-      border:0;
+    #countdown div {
+      min-width: 55px;
+      font-size: 1.2em;
+      padding: 8px 12px;
     }
-    .tips { list-style: decimal inside; margin-top: 10px; }
-    .tips li { margin-bottom: 8px; }
-  </style>
+    #countdown div span {
+      font-size: 1.6em;
+    }
+  }
+</style>
 </head>
 <body>
 
-<div class="wrapper">
+<div class="overlay">
 
   <header>
-    <h1>Дарья &amp; Тимур</h1>
-    <p>9 августа 2025</p>
+    <h1 class="shimmer">Дарья &amp; Тимур</h1>
+    <p>9 августа 2025 — приглашаем вас на нашу свадьбу!</p>
     <div id="countdown">
       <div><span id="days">--</span>дней</div>
       <div><span id="hours">--</span>часов</div>
@@ -116,10 +255,10 @@
   </header>
 
   <section>
-    <p>Дорогие друзья и близкие, приглашаем вас разделить с нами этот особенный день!
-    Совсем скоро состоится наша камерная свадьба в <strong>Купеческой усадьбе «Бирский берег», г. Бирск, улица Забелье, 1</strong>.</p>
-    <p>Формат: выездная церемония и банкет на природе. 
-    Дресс-код: для нас главное — ваше присутствие! Но будем рады, если вы поддержите нашу цветовую гамму и стиль.</p>
+    <p>Дорогие друзья и близкие, приглашаем вас разделить с нами этот особенный день!<br>
+      Совсем скоро состоится наша камерная свадьба в <strong>Купеческой усадьбе «Бирский берег», г. Бирск, улица Забелье, 1</strong>.</p>
+    <p>Формат: выездная церемония и банкет на природе.<br>
+      Дресс-код: для нас главное — ваше присутствие! Но будем рады, если вы поддержите нашу цветовую гамму и стиль.</p>
   </section>
 
   <section>
@@ -127,7 +266,8 @@
     <div class="map-container">
       <iframe
         src="https://www.google.com/maps?q=г.Бирск,+улица+Забелье+1&output=embed"
-        allowfullscreen>
+        allowfullscreen=""
+        loading="lazy">
       </iframe>
     </div>
   </section>
@@ -157,32 +297,15 @@
 
       <label>3. Предпочитаемый алкоголь (можно выбрать несколько):</label>
       <div class="checkbox-group">
-        <input type="checkbox" id="champagne" name="Алкоголь" value="Шампанское" />
-        <label for="champagne">Шампанское</label>
-
-        <input type="checkbox" id="whiteSemiSweet" name="Алкоголь" value="Вино белое полусладкое" />
-        <label for="whiteSemiSweet">Вино белое полусладкое</label>
-
-        <input type="checkbox" id="whiteDry" name="Алкоголь" value="Вино белое сухое" />
-        <label for="whiteDry">Вино белое сухое</label>
-
-        <input type="checkbox" id="redSemiSweet" name="Алкоголь" value="Вино красное полусладкое" />
-        <label for="redSemiSweet">Вино красное полусладкое</label>
-
-        <input type="checkbox" id="redDry" name="Алкоголь" value="Вино красное сухое" />
-        <label for="redDry">Вино красное сухое</label>
-
-        <input type="checkbox" id="beer" name="Алкоголь" value="Пиво" />
-        <label for="beer">Пиво</label>
-
-        <input type="checkbox" id="cognac" name="Алкоголь" value="Коньяк" />
-        <label for="cognac">Коньяк</label>
-
-        <input type="checkbox" id="vodka" name="Алкоголь" value="Водка" />
-        <label for="vodka">Водка</label>
-
-        <input type="checkbox" id="noDrink" name="Алкоголь" value="Не пью" />
-        <label for="noDrink">Не пью</label>
+        <label><input type="checkbox" name="Алкоголь" value="Шампанское" /><span>Шампанское</span></label>
+        <label><input type="checkbox" name="Алкоголь" value="Вино белое полусладкое" /><span>Вино белое полусладкое</span></label>
+        <label><input type="checkbox" name="Алкоголь" value="Вино белое сухое" /><span>Вино белое сухое</span></label>
+        <label><input type="checkbox" name="Алкоголь" value="Вино красное полусладкое" /><span>Вино красное полусладкое</span></label>
+        <label><input type="checkbox" name="Алкоголь" value="Вино красное сухое" /><span>Вино красное сухое</span></label>
+        <label><input type="checkbox" name="Алкоголь" value="Пиво" /><span>Пиво</span></label>
+        <label><input type="checkbox" name="Алкоголь" value="Коньяк" /><span>Коньяк</span></label>
+        <label><input type="checkbox" name="Алкоголь" value="Водка" /><span>Водка</span></label>
+        <label><input type="checkbox" name="Алкоголь" value="Не пью" /><span>Не пью</span></label>
       </div>
 
       <label for="allergy">4. Есть ли у вас аллергия? Укажите на что:</label>
@@ -201,22 +324,22 @@
 </div>
 
 <script>
-  const targetDate = new Date('2025-08-09T16:00:00');
-  function updateTimer() {
-    const now = new Date();
-    const diff = targetDate - now;
-    if (diff <= 0) return;
-    const d = Math.floor(diff/1000/60/60/24);
-    const h = Math.floor(diff/1000/60/60)%24;
-    const m = Math.floor(diff/1000/60)%60;
-    const s = Math.floor(diff/1000)%60;
-    document.getElementById('days').textContent = d;
-    document.getElementById('hours').textContent = h;
-    document.getElementById('minutes').textContent = m;
-    document.getElementById('seconds').textContent = s;
-  }
-  setInterval(updateTimer, 1000);
-  updateTimer();
+const targetDate = new Date('2025-08-09T16:00:00');
+function updateTimer() {
+  const now = new Date();
+  const diff = targetDate - now;
+  if (diff <= 0) return;
+  const d = Math.floor(diff/1000/60/60/24);
+  const h = Math.floor(diff/1000/60/60)%24;
+  const m = Math.floor(diff/1000/60)%60;
+  const s = Math.floor(diff/1000)%60;
+  document.getElementById('days').textContent = d;
+  document.getElementById('hours').textContent = h;
+  document.getElementById('minutes').textContent = m;
+  document.getElementById('seconds').textContent = s;
+}
+setInterval(updateTimer, 1000);
+updateTimer();
 </script>
 
 </body>
