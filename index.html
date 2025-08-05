@@ -136,34 +136,6 @@
     }
 
     /* =====================================
-       Дресс-код
-    ===================================== */
-    .dresscode .palette {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin-bottom: 20px;
-    }
-    .palette .color {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      border: 1px solid #ccc;
-    }
-    .dresscode .examples {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px,1fr));
-      gap: 15px;
-      justify-items: center;
-    }
-    .examples img {
-      width: 100%;
-      height: auto;
-      border-radius: 12px;
-      object-fit: cover;
-    }
-
-    /* =====================================
        Подсказки
     ===================================== */
     .tips .tip {
@@ -222,11 +194,6 @@
       border-radius: 6px;
       margin-top: 5px;
       font-size: 1rem;
-    }
-    .rsvp fieldset {
-      border: none;
-      display: grid;
-      gap: 10px;
     }
     .rsvp button {
       width: fit-content;
@@ -313,26 +280,6 @@
       </ul>
     </section>
 
-    <!-- Dresscode -->
-    <section class="dresscode" data-aos="fade-up">
-      <h2>Дресс-код</h2>
-      <p>Для нас главное — ваше присутствие! Но мы будем рады, если в своих нарядах вы поддержите цветовую гамму и стиль нашей свадьбы.</p>
-      <div class="palette">
-        <span class="color" style="background:#000;"></span>
-        <span class="color" style="background:#fff;border:1px solid #ccc;"></span>
-        <span class="color" style="background:#d8bea8;"></span>
-        <span class="color" style="background:#cbb59c;"></span>
-        <span class="color" style="background:#efe5de;"></span>
-        <span class="color" style="background:#f4ebe7;"></span>
-      </div>
-      <div class="examples">
-        <img src="dress1.jpg" alt="Пример женского образа">
-        <img src="suit1.jpg" alt="Пример мужского образа">
-        <img src="dress2.jpg" alt="Пример женского образа">
-        <img src="suit2.jpg" alt="Пример мужского образа">
-      </div>
-    </section>
-
     <!-- Tips -->
     <section class="tips" data-aos="fade-up">
       <h2>Подсказки</h2>
@@ -405,14 +352,7 @@
           Есть ли у вас аллергия?
           <textarea name="allergy" rows="2"></textarea>
         </label>
-        <fieldset>
-          <legend>Буду пить</legend>
-          <label><input type="checkbox" name="drink" value="vodka"> водка</label>
-          <label><input type="checkbox" name="drink" value="cognac"> коньяк</label>
-          <label><input type="checkbox" name="drink" value="wine_white"> вино белое</label>
-          <label><input type="checkbox" name="drink" value="wine_red"> вино красное</label>
-          <label><input type="checkbox" name="drink" value="no_alcohol"> не буду пить алкоголь</label>
-        </fieldset>
+        <!-- секция "Буду пить" удалена -->
         <button type="submit">Отправить</button>
       </form>
     </section>
