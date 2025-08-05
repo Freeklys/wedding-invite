@@ -2,26 +2,43 @@ name: Deploy Wedding Invite Site
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
 
 permissions:
-  pages: write
-  id-token: write
+  pages: write       # необходимо для publish
+  id-token: write    # необходимо для deploy-pages@v4
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
+
     steps:
+      # 1) Клонируем репозиторий
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Ensure .nojekyll exists
+      # 2) Отключаем Jekyll, чтобы Pages отдавала чистый HTML
+      - name: Disable Jekyll processing
         run: touch .nojekyll
 
-      - name: Upload artifact for Pages
-        uses: actions/upload-pages-artifact@v1
-        with:
-          path: .   # публикуем всё из корня
+      # 3) Конфигурируем Pages (рекомендуется before upload)
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
 
+      # 4) Загружаем сайт в Pages-артефакт
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: |
+            index.html
+            veil-loop.mp4
+            dress1.jpg
+            suit1.jpg
+            dress2.jpg
+            suit2.jpg
+            .nojekyll
+
+      # 5) Деплоим в GitHub Pages
       - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v4
