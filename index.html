@@ -24,32 +24,50 @@
     /* Reset & базовые стили */
     *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
     html, body {
-      width:100%; font-family:'Montserrat',sans-serif; color:#333;
-      overflow-x:hidden;
-      background: #f7f2e9;
+      width:100%; min-height:100vh;
+      font-family:'Montserrat',sans-serif;
+      color:#333; overflow-x:hidden;
+      background:#f7f2e9;
+      scroll-behavior:smooth;
     }
 
     /* Видео-фон */
     #bg-video {
-      position:fixed; top:50%; left:50%;
+      position:fixed;
+      top:50%; left:50%;
       transform:translate(-50%,-50%);
       min-width:100%; min-height:100%;
-      object-fit:cover; z-index:-2;
+      object-fit:cover;
+      object-position:center center;
+      z-index:-2;
       filter:sepia(0.3) saturate(1.5) brightness(1.1);
     }
     .video-overlay {
-      position:fixed; top:0; left:0;
-      width:100%; height:100%;
-      background:rgba(255,255,255,0.4); z-index:-1;
+      position:fixed; inset:0;
+      background:rgba(255,255,255,0.4);
+      z-index:-1;
+    }
+
+    /* Мобильное переопределение */
+    @media (max-width:768px) {
+      #bg-video {
+        position:fixed;
+        top:50%; left:50%;
+        transform:translate(-50%,-50%);
+        width:auto; height:auto;
+        min-width:100%; min-height:100%;
+        object-fit:cover;
+        object-position:center center;
+      }
     }
 
     /* Контейнер */
     .wrapper {
       position:relative; z-index:1;
       max-width:900px; width:90%;
-      margin: 60px auto;
-      background:rgba(255,255,255,0.85);
+      margin:60px auto;
       padding:40px 20px 100px;
+      background:rgba(255,255,255,0.85);
       border-radius:12px;
     }
 
@@ -89,83 +107,79 @@
     }
     .timing .time {
       font-size:2rem; font-weight:600;
-      margin-bottom:5px; color:#222;
+      color:#222; margin-bottom:5px;
     }
 
-    
+    /* Дресс-код */
+    .dresscode p { text-align:center; margin-bottom:20px; }
+    .dresscode .palette {
+      display:flex; justify-content:center; gap:10px; margin-bottom:60px;
+    }
+    .palette .color {
+      width:30px; height:30px; border-radius:50%; border:1px solid #ccc;
+    }
+
     /* Подсказки */
     .tips .tip {
-      display:flex; align-items:flex-start;
-      margin-bottom:25px;
+      display:flex; align-items:flex-start; margin-bottom:25px;
     }
     .tip-icon {
-      font-size:1.5rem; color:#b88975;
-      margin-right:15px; min-width:24px;
+      font-size:1.5rem; color:#b88975; margin-right:15px; min-width:24px;
     }
     .tip h3 {
-      font-size:1.1rem; font-weight:600;
-      margin-bottom:5px;
+      font-size:1.1rem; font-weight:600; margin-bottom:5px;
     }
 
     /* Место проведения */
     .venue .address {
-      text-align:center; font-size:1rem;
-      margin-bottom:20px;
+      text-align:center; margin-bottom:20px; font-size:1rem;
     }
     .venue .map {
-      width:100%; height:300px;
-      border-radius:12px; overflow:hidden;
-      margin-bottom:60px;
+      width:100%; height:300px; border-radius:12px;
+      overflow:hidden; margin-bottom:60px;
     }
     .venue .map iframe { width:100%; height:100%; border:0; }
 
     /* RSVP */
     .rsvp form {
-      display:grid; gap:15px;
-      max-width:600px; margin:0 auto 60px;
+      display:grid; gap:15px; max-width:600px;
+      margin:0 auto 60px;
     }
     .rsvp label {
-      display:flex; flex-direction:column;
-      font-weight:500;
+      display:flex; flex-direction:column; font-weight:500;
     }
-    .rsvp input,
-    .rsvp select,
-    .rsvp textarea {
+    .rsvp input, .rsvp select, .rsvp textarea {
       padding:10px; border:1px solid #ccc;
-      border-radius:6px; margin-top:5px;
-      font-size:1rem;
+      border-radius:6px; margin-top:5px; font-size:1rem;
     }
     .rsvp button {
-      padding:12px 30px; background:#d3a58f;
-      color:#fff; border:none; border-radius:6px;
-      font-size:1.1rem; cursor:pointer;
-      transition:background .3s; width:fit-content;
-      align-self:center;
+      padding:12px 30px; background:#d3a58f; color:#fff;
+      border:none; border-radius:6px; cursor:pointer;
+      transition:background .3s; align-self:center;
     }
     .rsvp button:hover { background:#b88b77; }
 
     /* Подпись */
     .signature {
       text-align:center; margin-top:40px;
-      font-family:'Great Vibes',cursive;
-      font-size:2rem; color:#222;
+      font-family:'Great Vibes',cursive; font-size:2rem; color:#222;
     }
 
-    /* AOS: стили анимаций */
+    /* AOS: анимации */
     [data-aos] {
-      opacity: 0; transform: translateY(20px);
-      transition-property: opacity, transform;
+      opacity:0; transform:translateY(20px);
+      transition:opacity .6s, transform .6s;
     }
     [data-aos].aos-animate {
-      opacity: 1; transform: none;
+      opacity:1; transform:none;
     }
 
-    /* Scroll-to-top */
+    /* Кнопка "Наверх" */
     #toTop {
       position:fixed; bottom:30px; right:30px;
       background:#d3a58f; color:#fff; border:none;
-      padding:12px; border-radius:50%; cursor:pointer; display:none;
-      z-index:10; box-shadow:0 2px 6px rgba(0,0,0,0.2);
+      padding:12px; border-radius:50%; cursor:pointer;
+      display:none; z-index:10; box-shadow:0 2px 6px rgba(0,0,0,0.2);
     }
     #toTop:hover { background:#b88b77; }
   </style>
@@ -173,18 +187,17 @@
 <body>
 
   <!-- Видео-фон с постером -->
-  <video autoplay muted loop playsinline id="bg-video" poster="veil-poster.jpg">
+  <video autoplay muted loop playsinline webkit-playsinline preload="auto" id="bg-video" poster="veil-poster.jpg">
     <source src="veil-loop.mp4" type="video/mp4">
   </video>
   <div class="video-overlay"></div>
 
   <div class="wrapper">
-
     <!-- Hero -->
     <header class="hero" data-aos="fade-down">
       <div class="subtitle">Приглашение на свадьбу</div>
       <div class="title">Тимур &amp; Дарья</div>
-      <div class="date">август <span style="font-size:2.5rem;vertical-align:middle;">8</span> 2025</div>
+      <div class="date">август <span>8</span> 2025</div>
     </header>
 
     <!-- Intro -->
@@ -197,21 +210,11 @@
     <section class="timing" data-aos="fade-up">
       <h2>Тайминг</h2>
       <ul>
-        <li data-aos="fade-up" data-aos-delay="100">
-          <div class="time">13:15</div> Сбор у ЗАГСа, ул. Ленина, 69
-        </li>
-        <li data-aos="fade-up" data-aos-delay="200">
-          <div class="time">13:30</div> Торжественная регистрация
-        </li>
-        <li data-aos="fade-up" data-aos-delay="300">
-          <div class="time">14:00</div> Фотосессия
-        </li>
-        <li data-aos="fade-up" data-aos-delay="400">
-          <div class="time">15:30</div> Сбор гостей у кафе, ул. Чкалова, 2Д
-        </li>
-        <li data-aos="fade-up" data-aos-delay="500">
-          <div class="time">16:00</div> Праздничный ужин
-        </li>
+        <li data-aos="fade-up" data-aos-delay="100"><div class="time">13:15</div> Сбор у ЗАГСа, ул. Ленина, 69</li>
+        <li data-aos="fade-up" data-aos-delay="200"><div class="time">13:30</div> Торжественная регистрация</li>
+        <li data-aos="fade-up" data-aos-delay="300"><div class="time">14:00</div> Фотосессия</li>
+        <li data-aos="fade-up" data-aos-delay="400"><div class="time">15:30</div> Сбор гостей у кафе, ул. Чкалова, 2Д</li>
+        <li data-aos="fade-up" data-aos-delay="500"><div class="time">16:00</div> Праздничный ужин</li>
       </ul>
     </section>
 
@@ -261,29 +264,14 @@
     <section class="rsvp" data-aos="fade-up">
       <h2>С нетерпением ждём вас</h2>
       <form action="https://formspree.io/f/your-form-id" method="POST">
-        <label>
-          Ваши имя и фамилия
-          <input type="text" name="name" required>
-        </label>
-        <label>
-          Планируете ли присутствовать?
-          <select name="attend" required>
-            <option>Да, с удовольствием!</option>
-            <option>К сожалению, нет</option>
-          </select>
-        </label>
-        <label>
-          Телефон
-          <input type="tel" name="phone" required>
-        </label>
-        <label>
-          Я буду с парой (имя, фамилия)
-          <input type="text" name="partner">
-        </label>
-        <label>
-          Есть ли у вас аллергия?
-          <textarea name="allergy" rows="2"></textarea>
-        </label>
+        <label>Ваши имя и фамилия<input type="text" name="name" required></label>
+        <label>Планируете ли присутствовать?<select name="attend" required>
+          <option>Да, с удовольствием!</option>
+          <option>К сожалению, нет</option>
+        </select></label>
+        <label>Телефон<input type="tel" name="phone" required></label>
+        <label>Я буду с парой (имя, фамилия)<input type="text" name="partner"></label>
+        <label>Есть ли у вас аллергия?<textarea name="allergy" rows="2"></textarea></label>
         <button type="submit">Отправить</button>
       </form>
     </section>
@@ -292,8 +280,7 @@
     <footer class="signature" data-aos="fade-up">
       С любовью<br/>Тимур и Дарья
     </footer>
-
-  </div> <!-- /.wrapper -->
+  </div>
 
   <!-- Scroll-to-top -->
   <button id="toTop" aria-label="Наверх"><i class="fa-solid fa-chevron-up"></i></button>
@@ -303,7 +290,6 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       AOS.init({ once: true, duration: 800, easing: 'ease-in-out' });
-
       const toTop = document.getElementById('toTop');
       window.addEventListener('scroll', () => {
         toTop.style.display = window.scrollY > 200 ? 'block' : 'none';
