@@ -21,215 +21,134 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
   <style>
-    /* =====================================
-       Reset & базовые стили
-    ===================================== */
-    *, *::before, *::after {
-      margin: 0; padding: 0; box-sizing: border-box;
-    }
+    /* Reset & базовые стили */
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
     html, body {
-      width: 100%; height: 100%;
-      font-family: 'Montserrat', sans-serif;
-      color: #333;
-      overflow-x: hidden;
+      width:100%; height:100%;
+      font-family:'Montserrat',sans-serif;
+      color:#333;
+      overflow-x:hidden;
     }
-
-    /* =====================================
-       Видео-фон
-    ===================================== */
+    /* Видео-фон */
     #bg-video {
-      position: fixed;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      min-width: 100%; min-height: 100%;
-      object-fit: cover;
-      z-index: -2;
-      filter: sepia(0.3) saturate(1.5) brightness(1.1);
+      position:fixed; top:50%; left:50%;
+      transform:translate(-50%,-50%);
+      min-width:100%; min-height:100%;
+      object-fit:cover; z-index:-2;
+      filter:sepia(0.3) saturate(1.5) brightness(1.1);
     }
     .video-overlay {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(255,255,255,0.4);
-      z-index: -1;
+      position:fixed; top:0; left:0;
+      width:100%; height:100%;
+      background:rgba(255,255,255,0.4);
+      z-index:-1;
     }
-
-    /* =====================================
-       Обёртка контента
-    ===================================== */
+    /* Обёртка контента */
     .wrapper {
-      position: relative;
-      z-index: 1;
-      max-width: 900px;
-      width: 90%;
-      margin: 0 auto;
-      background: rgba(255,255,255,0.85);
-      padding: 40px 20px;
+      position:relative; z-index:1;
+      max-width:900px; width:90%;
+      margin:0 auto;
+      background:rgba(255,255,255,0.85);
+      padding:40px 20px;
     }
-
-    /* =====================================
-       Hero-секция
-    ===================================== */
-    header.hero {
-      text-align: center;
-      margin-bottom: 60px;
-    }
+    /* Hero */
+    header.hero { text-align:center; margin-bottom:60px; }
     .hero .subtitle {
-      font-size: 1rem;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: #555;
-      margin-bottom: 10px;
+      font-size:1rem; letter-spacing:.2em; text-transform:uppercase;
+      color:#555; margin-bottom:10px;
     }
     .hero .title {
-      font-family: 'Great Vibes', cursive;
-      font-size: 3.5rem;
-      color: #222;
-      margin-bottom: 10px;
+      font-family:'Great Vibes',cursive;
+      font-size:3.5rem; color:#222; margin-bottom:10px;
     }
-    .hero .date {
-      font-size: 1.2rem;
-      color: #555;
-    }
-
-    /* =====================================
-       Общие стили секций
-    ===================================== */
+    .hero .date { font-size:1.2rem; color:#555; }
+    /* Общие стили секций */
     section h2 {
-      font-size: 2rem;
-      font-weight: 600;
-      text-align: center;
-      margin-bottom: 20px;
-      color: #222;
+      font-size:2rem; font-weight:600;
+      text-align:center; margin-bottom:20px;
+      color:#222;
     }
     section p, section li {
-      font-size: 1rem;
-      line-height: 1.6;
-      margin-bottom: 15px;
+      font-size:1rem; line-height:1.6; margin-bottom:15px;
     }
-
-    /* =====================================
-       Intro
-    ===================================== */
-    .intro p { margin-bottom: 20px; }
-
-    /* =====================================
-       Тайминг
-    ===================================== */
+    /* Intro */
+    .intro p { margin-bottom:20px; }
+    /* Тайминг */
     .timing ul {
-      list-style: none;
-      padding: 0;
-      max-width: 400px;
-      margin: 0 auto;
+      list-style:none; padding:0;
+      max-width:400px; margin:0 auto;
     }
     .timing li {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-bottom: 30px;
+      display:flex; flex-direction:column;
+      align-items:center; margin-bottom:30px;
     }
     .timing .time {
-      font-size: 2rem;
-      font-weight: 600;
-      margin-bottom: 5px;
-      color: #222;
+      font-size:2rem; font-weight:600;
+      margin-bottom:5px; color:#222;
     }
-
-    /* =====================================
-       Подсказки
-    ===================================== */
+    /* Подсказки */
     .tips .tip {
-      display: flex;
-      align-items: flex-start;
-      margin-bottom: 25px;
+      display:flex; align-items:flex-start;
+      margin-bottom:25px;
     }
     .tip-icon {
-      font-size: 1.5rem;
-      color: #b88975;
-      margin-right: 15px;
-      min-width: 24px;
+      font-size:1.5rem; color:#b88975;
+      margin-right:15px; min-width:24px;
     }
     .tip h3 {
-      font-size: 1.1rem;
-      font-weight: 600;
-      margin-bottom: 5px;
+      font-size:1.1rem; font-weight:600;
+      margin-bottom:5px;
     }
-
-    /* =====================================
-       Место проведения
-    ===================================== */
+    /* Место проведения */
     .venue .address {
-      text-align: center;
-      font-size: 1rem;
-      margin-bottom: 20px;
+      text-align:center; font-size:1rem;
+      margin-bottom:20px;
     }
     .venue .map {
-      width: 100%;
-      height: 300px;
-      border-radius: 12px;
-      overflow: hidden;
-      margin-bottom: 20px;
+      width:100%; height:300px;
+      border-radius:12px; overflow:hidden;
+      margin-bottom:20px;
     }
     .venue .map iframe { width:100%; height:100%; border:0; }
-
-    /* =====================================
-       RSVP-форма
-    ===================================== */
+    /* RSVP-форма */
     .rsvp form {
-      display: grid;
-      gap: 15px;
-      max-width: 600px;
-      margin: 0 auto;
+      display:grid; gap:15px;
+      max-width:600px; margin:0 auto;
     }
     .rsvp label {
-      display: flex;
-      flex-direction: column;
-      font-weight: 500;
+      display:flex; flex-direction:column;
+      font-weight:500;
     }
     .rsvp input,
     .rsvp select,
     .rsvp textarea {
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      margin-top: 5px;
-      font-size: 1rem;
+      padding:10px; border:1px solid #ccc;
+      border-radius:6px; margin-top:5px;
+      font-size:1rem;
     }
     .rsvp button {
-      width: fit-content;
-      padding: 12px 30px;
-      background: #d3a58f;
-      color: #fff;
-      border: none;
-      border-radius: 6px;
-      font-size: 1.1rem;
-      cursor: pointer;
-      transition: background .3s;
+      width:fit-content;
+      padding:12px 30px;
+      background:#d3a58f; color:#fff;
+      border:none; border-radius:6px;
+      font-size:1.1rem; cursor:pointer;
+      transition:background .3s;
     }
-    .rsvp button:hover {
-      background: #b88b77;
-    }
-
-    /* =====================================
-       Подпись
-    ===================================== */
+    .rsvp button:hover { background:#b88b77; }
+    /* Подпись */
     .signature {
-      text-align: center;
-      margin-top: 40px;
-      font-family: 'Great Vibes', cursive;
-      font-size: 2rem;
-      color: #222;
+      text-align:center;
+      margin-top:40px;
+      font-family:'Great Vibes',cursive;
+      font-size:2rem; color:#222;
     }
-
     /* AOS: анимации */
     [data-aos] {
-      opacity: 0;
-      transform: translateY(20px);
-      transition-property: opacity, transform;
+      opacity:0; transform:translateY(20px);
+      transition-property:opacity,transform;
     }
     [data-aos].aos-animate {
-      opacity: 1;
-      transform: none;
+      opacity:1; transform:none;
     }
   </style>
 </head>
@@ -352,7 +271,6 @@
           Есть ли у вас аллергия?
           <textarea name="allergy" rows="2"></textarea>
         </label>
-        <!-- секция "Буду пить" удалена -->
         <button type="submit">Отправить</button>
       </form>
     </section>
@@ -365,15 +283,9 @@
   </div>
 
   <!-- AOS JS -->
-  <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js">
-  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
   <script>
-    AOS.init({
-      once: true,
-      duration: 800,
-      easing: 'ease-in-out'
-    });
+    AOS.init({ once: true, duration: 800, easing: 'ease-in-out' });
   </script>
 </body>
 </html>
