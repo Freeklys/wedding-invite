@@ -2,127 +2,440 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Тимур и Дарья</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Приглашение на свадьбу — Тимур & Дарья</title>
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap"
+    rel="stylesheet">
+
+  <!-- AOS (Animate On Scroll) -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+
+  <!-- Font Awesome -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    /* =====================================
+       Reset & базовые стили
+    ===================================== */
+    *, *::before, *::after {
+      margin: 0; padding: 0; box-sizing: border-box;
     }
-    body {
-      font-family: 'Roboto', sans-serif;
-      background-color: #fffaf5;
-      color: #4e4e4e;
+    html, body {
+      width: 100%; height: 100%;
+      font-family: 'Montserrat', sans-serif;
+      color: #333;
       overflow-x: hidden;
     }
-    header {
-      height: 100vh;
-      background: url('hero.jpg') center/cover no-repeat;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      color: white;
-      animation: fadeIn 2s ease-out;
+
+    /* =====================================
+       Видео-фон
+    ===================================== */
+    #bg-video {
+      position: fixed;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      min-width: 100%; min-height: 100%;
+      width: auto; height: auto;
+      object-fit: cover;
+      z-index: -2;
+      /* тонировка в бежевый: настраивайте по вкусу */
+      filter: sepia(0.3) saturate(1.5) brightness(1.1);
     }
-    header h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
+    .video-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(255,255,255,0.4);
+      z-index: -1;
     }
-    header p {
-      font-size: 1.5rem;
-    }
-    section {
-      padding: 80px 20px;
+
+    /* =====================================
+       Обёртка контента
+    ===================================== */
+    .wrapper {
+      position: relative;
+      z-index: 1;
       max-width: 900px;
-      margin: auto;
-      animation: fadeUp 1.5s ease-out;
+      width: 90%;
+      margin: 0 auto;
+      background: rgba(255,255,255,0.85);
+      padding: 40px 20px;
     }
+
+    /* =====================================
+       Hero-секция
+    ===================================== */
+    header.hero {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    .hero .subtitle {
+      font-size: 1rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: #555;
+      margin-bottom: 10px;
+    }
+    .hero .title {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3.5rem;
+      color: #222;
+      margin-bottom: 10px;
+    }
+    .hero .date {
+      font-size: 1.2rem;
+      color: #555;
+    }
+
+    /* =====================================
+       Общие стили секций
+    ===================================== */
     section h2 {
       font-size: 2rem;
-      margin-bottom: 1rem;
+      font-weight: 600;
       text-align: center;
+      margin-bottom: 20px;
+      color: #222;
     }
-    .img-sample {
-      width: 100%;
-      max-width: 600px;
-      margin: 20px auto;
-      display: block;
-      border-radius: 8px;
+    section p, section li {
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 15px;
     }
-    footer {
-      text-align: center;
-      padding: 30px;
-      font-size: 0.9rem;
-      color: #888;
+
+    /* =====================================
+       Intro
+    ===================================== */
+    .intro p { margin-bottom: 20px; }
+
+    /* =====================================
+       Тайминг
+    ===================================== */
+    .timing ul {
+      list-style: none;
+      padding: 0;
+      max-width: 400px;
+      margin: 0 auto;
     }
-    @keyframes fadeIn {
-      from {opacity: 0;} to {opacity: 1;}
+    .timing li {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 30px;
     }
-    @keyframes fadeUp {
-      from {transform: translateY(30px); opacity: 0;} to {transform: translateY(0); opacity: 1;}
+    .timing .time {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 5px;
+      color: #222;
     }
-    .rsvp {
+
+    /* =====================================
+       Дресс-код
+    ===================================== */
+    .dresscode .palette {
       display: flex;
       justify-content: center;
-      margin-top: 30px;
+      gap: 10px;
+      margin-bottom: 20px;
     }
-    .rsvp a {
-      background-color: #d7bfa5;
-      padding: 12px 24px;
-      border-radius: 30px;
-      color: white;
-      font-weight: bold;
-      text-decoration: none;
-      transition: background 0.3s;
+    .palette .color {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: 1px solid #ccc;
     }
-    .rsvp a:hover {
-      background-color: #bfa68e;
+    .dresscode .examples {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px,1fr));
+      gap: 15px;
+      justify-items: center;
+    }
+    .examples img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      object-fit: cover;
+    }
+
+    /* =====================================
+       Подсказки
+    ===================================== */
+    .tips .tip {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 25px;
+    }
+    .tip-icon {
+      font-size: 1.5rem;
+      color: #b88975;
+      margin-right: 15px;
+      min-width: 24px;
+    }
+    .tip h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+    .tip p { margin: 0; }
+
+    /* =====================================
+       Место проведения
+    ===================================== */
+    .venue .address {
+      text-align: center;
+      font-size: 1rem;
+      margin-bottom: 20px;
+    }
+    .venue .map {
+      width: 100%;
+      height: 300px;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    .venue .map iframe { width:100%; height:100%; border:0; }
+
+    /* =====================================
+       RSVP-форма
+    ===================================== */
+    .rsvp form {
+      display: grid;
+      gap: 15px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .rsvp label {
+      display: flex;
+      flex-direction: column;
+      font-weight: 500;
+    }
+    .rsvp input,
+    .rsvp select,
+    .rsvp textarea {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin-top: 5px;
+      font-size: 1rem;
+    }
+    .rsvp fieldset {
+      border: none;
+      display: grid;
+      gap: 10px;
+    }
+    .rsvp button {
+      width: fit-content;
+      padding: 12px 30px;
+      background: #d3a58f;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background .3s;
+    }
+    .rsvp button:hover {
+      background: #b88b77;
+    }
+
+    /* =====================================
+       Подпись
+    ===================================== */
+    .signature {
+      text-align: center;
+      margin-top: 40px;
+      font-family: 'Great Vibes', cursive;
+      font-size: 2rem;
+      color: #222;
+    }
+
+    /* AOS: базовые стили для анимаций */
+    [data-aos] {
+      opacity: 0;
+      transform: translateY(20px);
+      transition-property: opacity, transform;
+    }
+    [data-aos].aos-animate {
+      opacity: 1;
+      transform: none;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Тимур и Дарья</h1>
-    <p>Мы приглашаем вас на нашу свадьбу</p>
-  </header>
 
-  <section>
-    <h2>Дата и место</h2>
-    <p>9 августа 2025 года, Купеческая усадьба «Бирский берег», Уфа</p>
-    <img src="sample1.jpg" alt="Место свадьбы" class="img-sample">
-  </section>
+  <!-- Видео-фон -->
+  <video autoplay muted loop playsinline id="bg-video">
+    <source src="veil-loop.mp4" type="video/mp4">
+  </video>
+  <div class="video-overlay"></div>
 
-  <section>
-    <h2>Программа дня</h2>
-    <ul>
-      <li>16:00 — Сбор гостей</li>
-      <li>17:00 — Выездная церемония</li>
-      <li>18:00 — Банкет на природе</li>
-    </ul>
-    <img src="sample2.jpg" alt="Программа" class="img-sample">
-  </section>
+  <div class="wrapper">
 
-  <section>
-    <h2>Дресс-код</h2>
-    <p>Пастельные однотонные оттенки</p>
-    <img src="dresscode.jpg" alt="Дресс-код" class="img-sample">
-  </section>
+    <!-- Hero -->
+    <header class="hero" data-aos="fade-down">
+      <div class="subtitle">Приглашение на свадьбу</div>
+      <div class="title">Тимур &amp; Дарья</div>
+      <div class="date">
+        автуст <span style="font-size:2.5rem; vertical-align:middle;">08</span> 2025
+      </div>
+    </header>
 
-  <section>
-    <h2>Пожалуйста, подтвердите своё присутствие</h2>
-    <div class="rsvp">
-      <a href="https://formspree.io/f/your-form-id" target="_blank">Ответить</a>
+    <!-- Intro -->
+    <section class="intro" data-aos="fade-up">
+      <p>Дорогие родные и близкие! Мы давно ждали момента, когда сможем разделить с вами самый важный и счастливый день в нашей жизни.</p>
+      <p>Совсем скоро состоится наша свадьба! Мы рады пригласить вас стать свидетелями этого торжества и разделить с нами самые яркие моменты!</p>
+    </section>
+
+    <!-- Timing -->
+    <section class="timing" data-aos="fade-up">
+      <h2>Тайминг</h2>
+      <ul>
+        <li data-aos="fade-up" data-aos-delay="100">
+          <div class="time">15:00</div> Сбор гостей
+        </li>
+        <li data-aos="fade-up" data-aos-delay="200">
+          <div class="time">15:30</div> Торжественная церемония
+        </li>
+        <li data-aos="fade-up" data-aos-delay="300">
+          <div class="time">16:00</div> Фуршет
+        </li>
+        <li data-aos="fade-up" data-aos-delay="400">
+          <div class="time">17:00</div> Праздничный ужин
+        </li>
+      </ul>
+    </section>
+
+    <!-- Dresscode -->
+    <section class="dresscode" data-aos="fade-up">
+      <h2>Дресс-код</h2>
+      <p>Для нас главное — ваше присутствие! Но мы будем рады, если в своих нарядах вы поддержите цветовую гамму и стиль нашей свадьбы.</p>
+      <div class="palette">
+        <span class="color" style="background:#000;"></span>
+        <span class="color" style="background:#fff;border:1px solid #ccc;"></span>
+        <span class="color" style="background:#d8bea8;"></span>
+        <span class="color" style="background:#cbb59c;"></span>
+        <span class="color" style="background:#efe5de;"></span>
+        <span class="color" style="background:#f4ebe7;"></span>
+      </div>
+      <div class="examples">
+        <img src="dress1.jpg" alt="Пример женского образа">
+        <img src="suit1.jpg" alt="Пример мужского образа">
+        <img src="dress2.jpg" alt="Пример женского образа">
+        <img src="suit2.jpg" alt="Пример мужского образа">
+      </div>
+    </section>
+
+    <!-- Tips -->
+    <section class="tips" data-aos="fade-up">
+      <h2>Подсказки</h2>
+      <div class="tip" data-aos="fade-right" data-aos-delay="100">
+        <i class="fa-solid fa-gift tip-icon"></i>
+        <div>
+          <h3>Сюрпризы</h3>
+          <p>Возьмите с собой отличное настроение! Приветствуются ваши поздравления, активное участие в интерактивах и творческие выступления. Обращайтесь к нашему организатору: Анастасия +7 922 254 66 50.</p>
+        </div>
+      </div>
+      <div class="tip" data-aos="fade-right" data-aos-delay="200">
+        <i class="fa-solid fa-rose tip-icon"></i>
+        <div>
+          <h3>Цветы</h3>
+          <p>Наш праздник будет окружён изобилием цветов, поэтому вместо букета мы будем рады бутылке вашего любимого вина — откроем на ближайшем совместном празднике.</p>
+        </div>
+      </div>
+      <div class="tip" data-aos="fade-right" data-aos-delay="300">
+        <i class="fa-solid fa-wallet tip-icon"></i>
+        <div>
+          <h3>Что дарить?</h3>
+          <p>В качестве подарка будем рады вкладу в семейный бюджет — он поможет воплотить нашу мечту в реальность!</p>
+        </div>
+      </div>
+      <div class="tip" data-aos="fade-right" data-aos-delay="400">
+        <i class="fa-solid fa-baby tip-icon"></i>
+        <div>
+          <h3>Маленькие гости</h3>
+          <p>Дорогие гости, мы будем благодарны, если наш праздник пройдёт в кругу взрослых — без детей. Вы сможете по-настоящему отдохнуть и развлечься.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Venue -->
+    <section class="venue" data-aos="fade-up">
+      <h2>Место проведения</h2>
+      <p class="address">Город Бирск, улица Чкалова 2Д</p>
+      <div class="map" data-aos="zoom-in">
+        <iframe
+          src="https://www.google.com/maps?q=Ресторан%20VINOTECA%20Сургут&output=embed"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </section>
+
+    <!-- RSVP -->
+    <section class="rsvp" data-aos="fade-up">
+      <h2>С нетерпением ждём вас</h2>
+      <form action="https://formspree.io/f/your-form-id" method="POST">
+        <label>
+          Ваши имя и фамилия
+          <input type="text" name="name" required>
+        </label>
+        <label>
+          Планируете ли присутствовать?
+          <select name="attend" required>
+            <option>Да, с удовольствием!</option>
+            <option>К сожалению, нет</option>
+          </select>
+        </label>
+        <label>
+          Телефон
+          <input type="tel" name="phone" required>
+        </label>
+        <label>
+          Я буду с парой (имя, фамилия)
+          <input type="text" name="partner">
+        </label>
+        <label>
+          Есть ли у вас аллергия?
+          <textarea name="allergy" rows="2"></textarea>
+        </label>
+        <fieldset>
+          <legend>Буду пить</legend>
+          <label><input type="checkbox" name="drink" value="vodka"> водка</label>
+          <label><input type="checkbox" name="drink" value="cognac"> коньяк</label>
+          <label><input type="checkbox" name="drink" value="wine_white"> вино белое</label>
+          <label><input type="checkbox" name="drink" value="wine_red"> вино красное</label>
+          <label><input type="checkbox" name="drink" value="no_alcohol"> не буду пить алкоголь</label>
+        </fieldset>
+        <button type="submit">Отправить</button>
+      </form>
+    </section>
+
+    <!-- Signature -->
+    <div class="signature" data-aos="fade-up">
+      С любовью <br>Тимур и Дарья
     </div>
-  </section>
 
-  <footer>
-    С любовью, Тимур и Дарья
-  </footer>
+  </div>
+
+  <!-- AOS JS -->
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js">
+  </script>
+  <script>
+    AOS.init({
+      once: true,
+      duration: 800,
+      easing: 'ease-in-out'
+    });
+  </script>
 </body>
+</html>
+
 </html>
