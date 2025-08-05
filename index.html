@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Приглашение на свадьбу — Тимур & Дарья</title>
+  <title>Приглашение на свадьбу — Тимур &amp; Дарья</title>
 
   <!-- Google Fonts -->
   <link
@@ -21,15 +21,15 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
   <style>
-    /* Reset & базовые стили */
+    /* ========== Reset & Base ========== */
     *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
     html, body {
       width:100%; height:100%;
       font-family:'Montserrat',sans-serif;
-      color:#333;
-      overflow-x:hidden;
+      color:#333; overflow-x:hidden;
     }
-    /* Видео-фон */
+
+    /* ========== Video Background ========== */
     #bg-video {
       position:fixed; top:50%; left:50%;
       transform:translate(-50%,-50%);
@@ -43,7 +43,8 @@
       background:rgba(255,255,255,0.4);
       z-index:-1;
     }
-    /* Обёртка контента */
+
+    /* ========== Wrapper ========== */
     .wrapper {
       position:relative; z-index:1;
       max-width:900px; width:90%;
@@ -51,29 +52,40 @@
       background:rgba(255,255,255,0.85);
       padding:40px 20px;
     }
-    /* Hero */
-    header.hero { text-align:center; margin-bottom:60px; }
+
+    /* ========== Hero ========== */
+    header.hero {
+      text-align:center; margin-bottom:60px;
+    }
     .hero .subtitle {
-      font-size:1rem; letter-spacing:.2em; text-transform:uppercase;
-      color:#555; margin-bottom:10px;
+      font-size:1rem; letter-spacing:.2em;
+      text-transform:uppercase; color:#555;
+      margin-bottom:10px;
     }
     .hero .title {
       font-family:'Great Vibes',cursive;
-      font-size:3.5rem; color:#222; margin-bottom:10px;
+      font-size:3.5rem; color:#222;
+      margin-bottom:10px;
     }
-    .hero .date { font-size:1.2rem; color:#555; }
-    /* Общие стили секций */
+    .hero .date {
+      font-size:1.2rem; color:#555;
+    }
+
+    /* ========== Sections ========== */
     section h2 {
       font-size:2rem; font-weight:600;
       text-align:center; margin-bottom:20px;
       color:#222;
     }
     section p, section li {
-      font-size:1rem; line-height:1.6; margin-bottom:15px;
+      font-size:1rem; line-height:1.6;
+      margin-bottom:15px;
     }
+
     /* Intro */
     .intro p { margin-bottom:20px; }
-    /* Тайминг */
+
+    /* Timing */
     .timing ul {
       list-style:none; padding:0;
       max-width:400px; margin:0 auto;
@@ -86,7 +98,27 @@
       font-size:2rem; font-weight:600;
       margin-bottom:5px; color:#222;
     }
-    /* Подсказки */
+
+    /* Dresscode */
+    .dresscode .palette {
+      display:flex; justify-content:center;
+      gap:10px; margin-bottom:20px;
+    }
+    .palette .color {
+      width:30px; height:30px;
+      border-radius:50%; border:1px solid #ccc;
+    }
+    .dresscode .examples {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+      gap:15px; justify-items:center;
+    }
+    .examples img {
+      width:100%; border-radius:12px;
+      object-fit:cover;
+    }
+
+    /* Tips */
     .tips .tip {
       display:flex; align-items:flex-start;
       margin-bottom:25px;
@@ -99,7 +131,8 @@
       font-size:1.1rem; font-weight:600;
       margin-bottom:5px;
     }
-    /* Место проведения */
+
+    /* Venue */
     .venue .address {
       text-align:center; font-size:1rem;
       margin-bottom:20px;
@@ -109,8 +142,11 @@
       border-radius:12px; overflow:hidden;
       margin-bottom:20px;
     }
-    .venue .map iframe { width:100%; height:100%; border:0; }
-    /* RSVP-форма */
+    .venue .map iframe {
+      width:100%; height:100%; border:0;
+    }
+
+    /* RSVP */
     .rsvp form {
       display:grid; gap:15px;
       max-width:600px; margin:0 auto;
@@ -127,22 +163,22 @@
       font-size:1rem;
     }
     .rsvp button {
-      width:fit-content;
-      padding:12px 30px;
-      background:#d3a58f; color:#fff;
-      border:none; border-radius:6px;
+      padding:12px 30px; background:#d3a58f;
+      color:#fff; border:none; border-radius:6px;
       font-size:1.1rem; cursor:pointer;
       transition:background .3s;
+      width:fit-content;
     }
     .rsvp button:hover { background:#b88b77; }
-    /* Подпись */
+
+    /* Signature */
     .signature {
-      text-align:center;
-      margin-top:40px;
+      text-align:center; margin-top:40px;
       font-family:'Great Vibes',cursive;
       font-size:2rem; color:#222;
     }
-    /* AOS: анимации */
+
+    /* AOS */
     [data-aos] {
       opacity:0; transform:translateY(20px);
       transition-property:opacity,transform;
@@ -166,9 +202,7 @@
     <header class="hero" data-aos="fade-down">
       <div class="subtitle">Приглашение на свадьбу</div>
       <div class="title">Тимур &amp; Дарья</div>
-      <div class="date">
-        август <span style="font-size:2.5rem; vertical-align:middle;">8</span> 2025
-      </div>
+      <div class="date">август <span style="font-size:2.5rem;vertical-align:middle;">8</span> 2025</div>
     </header>
 
     <!-- Intro -->
@@ -199,6 +233,26 @@
       </ul>
     </section>
 
+    <!-- Dresscode -->
+    <section class="dresscode" data-aos="fade-up">
+      <h2>Дресс-код</h2>
+      <p>Для нас главное — ваше присутствие! Но мы будем рады, если в своих нарядах вы поддержите цветовую гамму и стиль нашей свадьбы.</p>
+      <div class="palette">
+        <span class="color" style="background:#000;"></span>
+        <span class="color" style="background:#fff;border:1px solid #ccc;"></span>
+        <span class="color" style="background:#d8bea8;"></span>
+        <span class="color" style="background:#cbb59c;"></span>
+        <span class="color" style="background:#efe5de;"></span>
+        <span class="color" style="background:#f4ebe7;"></span>
+      </div>
+      <div class="examples">
+        <img src="dress1.jpg" alt="Женский образ">
+        <img src="suit1.jpg" alt="Мужской образ">
+        <img src="dress2.jpg" alt="Женский образ">
+        <img src="suit2.jpg" alt="Мужской образ">
+      </div>
+    </section>
+
     <!-- Tips -->
     <section class="tips" data-aos="fade-up">
       <h2>Подсказки</h2>
@@ -206,28 +260,28 @@
         <i class="fa-solid fa-gift tip-icon"></i>
         <div>
           <h3>Сюрпризы</h3>
-          <p>Возьмите с собой отличное настроение! Приветствуются ваши поздравления, активное участие в интерактивах и творческие выступления. Обращайтесь к нашему организатору: Анастасия +7 922 254 66 50.</p>
+          <p>Возьмите с собой отличное настроение! Приветствуются ваши поздравления, активное участие в интерактивах и творческие выступления. Обращайтесь к организатору: Анастасия +7 922 254 66 50.</p>
         </div>
       </div>
       <div class="tip" data-aos="fade-right" data-aos-delay="200">
         <i class="fa-solid fa-rose tip-icon"></i>
         <div>
           <h3>Цветы</h3>
-          <p>Наш праздник будет окружён изобилием цветов, поэтому вместо букета мы будем рады бутылке вашего любимого вина — откроем на ближайшем совместном празднике.</p>
+          <p>Наш праздник будет окружён изобилием цветов, поэтому вместо букета мы будем рады бутылке вашего любимого вина.</p>
         </div>
       </div>
       <div class="tip" data-aos="fade-right" data-aos-delay="300">
         <i class="fa-solid fa-wallet tip-icon"></i>
         <div>
           <h3>Что дарить?</h3>
-          <p>В качестве подарка будем рады вкладу в семейный бюджет — он поможет воплотить нашу мечту в реальность!</p>
+          <p>Будем рады вкладу в семейный бюджет — он поможет воплотить нашу мечту в реальность!</p>
         </div>
       </div>
       <div class="tip" data-aos="fade-right" data-aos-delay="400">
         <i class="fa-solid fa-baby tip-icon"></i>
         <div>
           <h3>Маленькие гости</h3>
-          <p>Дорогие гости, мы будем благодарны, если наш праздник пройдёт в кругу взрослых — без детей. Вы сможете по-настоящему отдохнуть и развлечься.</p>
+          <p>Просим отказаться от участия детей, чтобы все могли отдохнуть по-настоящему.</p>
         </div>
       </div>
     </section>
@@ -239,53 +293,4 @@
       <div class="map" data-aos="zoom-in">
         <iframe
           src="https://www.google.com/maps?q=Город+Бирск+улица+Чкалова+2Д&output=embed"
-          allowfullscreen>
-        </iframe>
-      </div>
-    </section>
-
-    <!-- RSVP -->
-    <section class="rsvp" data-aos="fade-up">
-      <h2>С нетерпением ждём вас</h2>
-      <form action="https://formspree.io/f/your-form-id" method="POST">
-        <label>
-          Ваши имя и фамилия
-          <input type="text" name="name" required>
-        </label>
-        <label>
-          Планируете ли присутствовать?
-          <select name="attend" required>
-            <option>Да, с удовольствием!</option>
-            <option>К сожалению, нет</option>
-          </select>
-        </label>
-        <label>
-          Телефон
-          <input type="tel" name="phone" required>
-        </label>
-        <label>
-          Я буду с парой (имя, фамилия)
-          <input type="text" name="partner">
-        </label>
-        <label>
-          Есть ли у вас аллергия?
-          <textarea name="allergy" rows="2"></textarea>
-        </label>
-        <button type="submit">Отправить</button>
-      </form>
-    </section>
-
-    <!-- Signature -->
-    <div class="signature" data-aos="fade-up">
-      С любовью<br>Тимур и Дарья
-    </div>
-
-  </div>
-
-  <!-- AOS JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-  <script>
-    AOS.init({ once: true, duration: 800, easing: 'ease-in-out' });
-  </script>
-</body>
-</html>
+          allow
