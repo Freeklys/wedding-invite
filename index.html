@@ -108,15 +108,7 @@
       width:30px; height:30px;
       border-radius:50%; border:1px solid #ccc;
     }
-    .dresscode .examples {
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
-      gap:15px; justify-items:center;
-    }
-    .examples img {
-      width:100%; border-radius:12px;
-      object-fit:cover;
-    }
+    /* Удалены правила для .examples и .examples img */
 
     /* Tips */
     .tips .tip {
@@ -245,12 +237,7 @@
         <span class="color" style="background:#efe5de;"></span>
         <span class="color" style="background:#f4ebe7;"></span>
       </div>
-      <div class="examples">
-        <img src="dress1.jpg" alt="Женский образ">
-        <img src="suit1.jpg" alt="Мужской образ">
-        <img src="dress2.jpg" alt="Женский образ">
-        <img src="suit2.jpg" alt="Мужской образ">
-      </div>
+      <!-- Блок с примерами изображений удалён -->
     </section>
 
     <!-- Tips -->
@@ -281,7 +268,7 @@
         <i class="fa-solid fa-baby tip-icon"></i>
         <div>
           <h3>Маленькие гости</h3>
-          <p>Просим отказаться от участия детей, чтобы все могли отдохнуть по-настоящему.</p>
+          <p>Просим отказаться от участия детей, чтобы все могли по-настоящему отдохнуть.</p>
         </div>
       </div>
     </section>
@@ -293,4 +280,53 @@
       <div class="map" data-aos="zoom-in">
         <iframe
           src="https://www.google.com/maps?q=Город+Бирск+улица+Чкалова+2Д&output=embed"
-          allow
+          allowfullscreen>
+        </iframe>
+      </div>
+    </section>
+
+    <!-- RSVP -->
+    <section class="rsvp" data-aos="fade-up">
+      <h2>С нетерпением ждём вас</h2>
+      <form action="https://formspree.io/f/your-form-id" method="POST">
+        <label>
+          Ваши имя и фамилия
+          <input type="text" name="name" required>
+        </label>
+        <label>
+          Планируете ли присутствовать?
+          <select name="attend" required>
+            <option>Да, с удовольствием!</option>
+            <option>К сожалению, нет</option>
+          </select>
+        </label>
+        <label>
+          Телефон
+          <input type="tel" name="phone" required>
+        </label>
+        <label>
+          Я буду с парой (имя, фамилия)
+          <input type="text" name="partner">
+        </label>
+        <label>
+          Есть ли у вас аллергия?
+          <textarea name="allergy" rows="2"></textarea>
+        </label>
+        <button type="submit">Отправить</button>
+      </form>
+    </section>
+
+    <!-- Signature -->
+    <footer class="signature" data-aos="fade-up">
+      С любовью<br/>Тимур и Дарья
+    </footer>
+
+  </div> <!-- /.wrapper -->
+
+  <!-- AOS JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    AOS.init({ once: true, duration: 800, easing: 'ease-in-out' });
+  </script>
+</body>
+</html>
