@@ -289,26 +289,23 @@
     <section class="intro" data-aos="fade-up">
       <p>Дорогие родные и близкие! Мы давно ждали момента, когда сможем разделить с вами самый важный и счастливый день в нашей жизни.</p>
       <p>Совсем скоро состоится наша свадьба! Мы рады пригласить вас стать свидетелями этого торжества и разделить с нами самые яркие моменты!</p>
-    </section>
-
-    <!-- Timing -->
-    <section class="timing" data-aos="fade-up">
-      <h2>Тайминг</h2>
-      <ul>
-        <li data-aos="fade-up" data-aos-delay="100">
-          <div class="time">15:00</div> Сбор гостей
-        </li>
-        <li data-aos="fade-up" data-aos-delay="200">
-          <div class="time">15:30</div> Торжественная церемония
-        </li>
-        <li data-aos="fade-up" data-aos-delay="300">
-          <div class="time">16:00</div> Фуршет
-        </li>
-        <li data-aos="fade-up" data-aos-delay="400">
-          <div class="time">17:00</div> Праздничный ужин
-        </li>
-      </ul>
-    </section>
+  <section class="timing" data-aos="fade-up">
+  <h2>Тайминг</h2>
+  <ul>
+    <li data-aos="fade-up" data-aos-delay="100">
+      <div class="time">13:15</div> Сбор у ЗАГСа, ул. Ленина, 69
+    </li>
+    <li data-aos="fade-up" data-aos-delay="200">
+      <div class="time">13:30</div> Торжественная регистрация
+    </li>
+    <li data-aos="fade-up" data-aos-delay="300">
+      <div class="time">15:30</div> Фотосессия и сбор гостей у кафе
+    </li>
+    <li data-aos="fade-up" data-aos-delay="400">
+      <div class="time">16:00</div> Праздничный ужин
+    </li>
+  </ul>
+</section>
 
     <!-- Dresscode -->
     <section class="dresscode" data-aos="fade-up">
@@ -364,4 +361,73 @@
     </section>
 
     <!-- Venue -->
-    <section class="venue" data-aos="f
+    <section class="venue" data-aos="fade-up">
+      <h2>Место проведения</h2>
+      <p class="address">Город Бирск, улица Чкалова, 2Д</p>
+      <div class="map" data-aos="zoom-in">
+        <iframe
+          src="https://www.google.com/maps?q=Город+Бирск+улица+Чкалова+2Д&output=embed"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </section>
+
+    <!-- RSVP -->
+    <section class="rsvp" data-aos="fade-up">
+      <h2>С нетерпением ждём вас</h2>
+      <form action="https://formspree.io/f/your-form-id" method="POST">
+        <label>
+          Ваши имя и фамилия
+          <input type="text" name="name" required>
+        </label>
+        <label>
+          Планируете ли присутствовать?
+          <select name="attend" required>
+            <option>Да, с удовольствием!</option>
+            <option>К сожалению, нет</option>
+          </select>
+        </label>
+        <label>
+          Телефон
+          <input type="tel" name="phone" required>
+        </label>
+        <label>
+          Я буду с парой (имя, фамилия)
+          <input type="text" name="partner">
+        </label>
+        <label>
+          Есть ли у вас аллергия?
+          <textarea name="allergy" rows="2"></textarea>
+        </label>
+        <fieldset>
+          <legend>Буду пить</legend>
+          <label><input type="checkbox" name="drink" value="vodka"> водка</label>
+          <label><input type="checkbox" name="drink" value="cognac"> коньяк</label>
+          <label><input type="checkbox" name="drink" value="wine_white"> вино белое</label>
+          <label><input type="checkbox" name="drink" value="wine_red"> вино красное</label>
+          <label><input type="checkbox" name="drink" value="no_alcohol"> не буду пить алкоголь</label>
+        </fieldset>
+        <button type="submit">Отправить</button>
+      </form>
+    </section>
+
+    <!-- Signature -->
+    <div class="signature" data-aos="fade-up">
+      С любовью<br>Тимур и Дарья
+    </div>
+
+  </div>
+
+  <!-- AOS JS -->
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js">
+  </script>
+  <script>
+    AOS.init({
+      once: true,
+      duration: 800,
+      easing: 'ease-in-out'
+    });
+  </script>
+</body>
+</html>
