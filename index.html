@@ -21,15 +21,15 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
   <style>
-    /* ========== Reset & Base ========== */
+    /* Reset & базовые стили */
     *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
     html, body {
-      width:100%; height:100%;
-      font-family:'Montserrat',sans-serif;
-      color:#333; overflow-x:hidden;
+      width:100%; font-family:'Montserrat',sans-serif; color:#333;
+      overflow-x:hidden;
+      background: #f7f2e9;
     }
 
-    /* ========== Video Background ========== */
+    /* Видео-фон */
     #bg-video {
       position:fixed; top:50%; left:50%;
       transform:translate(-50%,-50%);
@@ -40,55 +40,48 @@
     .video-overlay {
       position:fixed; top:0; left:0;
       width:100%; height:100%;
-      background:rgba(255,255,255,0.4);
-      z-index:-1;
+      background:rgba(255,255,255,0.4); z-index:-1;
     }
 
-    /* ========== Wrapper ========== */
+    /* Контейнер */
     .wrapper {
       position:relative; z-index:1;
       max-width:900px; width:90%;
-      margin:0 auto;
+      margin: 60px auto;
       background:rgba(255,255,255,0.85);
-      padding:40px 20px;
+      padding:40px 20px 100px;
+      border-radius:12px;
     }
 
-    /* ========== Hero ========== */
-    header.hero {
-      text-align:center; margin-bottom:60px;
-    }
+    /* Hero */
+    header.hero { text-align:center; margin-bottom:60px; }
     .hero .subtitle {
-      font-size:1rem; letter-spacing:.2em;
-      text-transform:uppercase; color:#555;
-      margin-bottom:10px;
+      font-size:1rem; letter-spacing:.2em; text-transform:uppercase;
+      color:#555; margin-bottom:10px;
     }
     .hero .title {
-      font-family:'Great Vibes',cursive;
-      font-size:3.5rem; color:#222;
-      margin-bottom:10px;
+      font-family:'Great Vibes',cursive; font-size:3.5rem;
+      color:#222; margin-bottom:10px;
     }
-    .hero .date {
-      font-size:1.2rem; color:#555;
-    }
+    .hero .date { font-size:1.2rem; color:#555; }
 
-    /* ========== Sections ========== */
+    /* Общие стили секций */
     section h2 {
       font-size:2rem; font-weight:600;
-      text-align:center; margin-bottom:20px;
-      color:#222;
+      text-align:center; margin-bottom:20px; color:#222;
     }
     section p, section li {
-      font-size:1rem; line-height:1.6;
-      margin-bottom:15px;
+      font-size:1rem; line-height:1.6; margin-bottom:15px;
+      color:#333;
     }
 
     /* Intro */
     .intro p { margin-bottom:20px; }
 
-    /* Timing */
+    /* Тайминг */
     .timing ul {
-      list-style:none; padding:0;
-      max-width:400px; margin:0 auto;
+      list-style:none; padding:0; max-width:400px;
+      margin:0 auto 60px;
     }
     .timing li {
       display:flex; flex-direction:column;
@@ -99,18 +92,8 @@
       margin-bottom:5px; color:#222;
     }
 
-    /* Dresscode */
-    .dresscode .palette {
-      display:flex; justify-content:center;
-      gap:10px; margin-bottom:20px;
-    }
-    .palette .color {
-      width:30px; height:30px;
-      border-radius:50%; border:1px solid #ccc;
-    }
-    /* Удалены правила для .examples и .examples img */
-
-    /* Tips */
+    
+    /* Подсказки */
     .tips .tip {
       display:flex; align-items:flex-start;
       margin-bottom:25px;
@@ -124,7 +107,7 @@
       margin-bottom:5px;
     }
 
-    /* Venue */
+    /* Место проведения */
     .venue .address {
       text-align:center; font-size:1rem;
       margin-bottom:20px;
@@ -132,16 +115,14 @@
     .venue .map {
       width:100%; height:300px;
       border-radius:12px; overflow:hidden;
-      margin-bottom:20px;
+      margin-bottom:60px;
     }
-    .venue .map iframe {
-      width:100%; height:100%; border:0;
-    }
+    .venue .map iframe { width:100%; height:100%; border:0; }
 
     /* RSVP */
     .rsvp form {
       display:grid; gap:15px;
-      max-width:600px; margin:0 auto;
+      max-width:600px; margin:0 auto 60px;
     }
     .rsvp label {
       display:flex; flex-direction:column;
@@ -158,32 +139,41 @@
       padding:12px 30px; background:#d3a58f;
       color:#fff; border:none; border-radius:6px;
       font-size:1.1rem; cursor:pointer;
-      transition:background .3s;
-      width:fit-content;
+      transition:background .3s; width:fit-content;
+      align-self:center;
     }
     .rsvp button:hover { background:#b88b77; }
 
-    /* Signature */
+    /* Подпись */
     .signature {
       text-align:center; margin-top:40px;
       font-family:'Great Vibes',cursive;
       font-size:2rem; color:#222;
     }
 
-    /* AOS */
+    /* AOS: стили анимаций */
     [data-aos] {
-      opacity:0; transform:translateY(20px);
-      transition-property:opacity,transform;
+      opacity: 0; transform: translateY(20px);
+      transition-property: opacity, transform;
     }
     [data-aos].aos-animate {
-      opacity:1; transform:none;
+      opacity: 1; transform: none;
     }
+
+    /* Scroll-to-top */
+    #toTop {
+      position:fixed; bottom:30px; right:30px;
+      background:#d3a58f; color:#fff; border:none;
+      padding:12px; border-radius:50%; cursor:pointer; display:none;
+      z-index:10; box-shadow:0 2px 6px rgba(0,0,0,0.2);
+    }
+    #toTop:hover { background:#b88b77; }
   </style>
 </head>
 <body>
 
-  <!-- Видео-фон -->
-  <video autoplay muted loop playsinline id="bg-video">
+  <!-- Видео-фон с постером -->
+  <video autoplay muted loop playsinline id="bg-video" poster="veil-poster.jpg">
     <source src="veil-loop.mp4" type="video/mp4">
   </video>
   <div class="video-overlay"></div>
@@ -225,21 +215,6 @@
       </ul>
     </section>
 
-    <!-- Dresscode -->
-    <section class="dresscode" data-aos="fade-up">
-      <h2>Дресс-код</h2>
-      <p>Для нас главное — ваше присутствие! Но мы будем рады, если в своих нарядах вы поддержите цветовую гамму и стиль нашей свадьбы.</p>
-      <div class="palette">
-        <span class="color" style="background:#000;"></span>
-        <span class="color" style="background:#fff;border:1px solid #ccc;"></span>
-        <span class="color" style="background:#d8bea8;"></span>
-        <span class="color" style="background:#cbb59c;"></span>
-        <span class="color" style="background:#efe5de;"></span>
-        <span class="color" style="background:#f4ebe7;"></span>
-      </div>
-      <!-- Блок с примерами изображений удалён -->
-    </section>
-
     <!-- Tips -->
     <section class="tips" data-aos="fade-up">
       <h2>Подсказки</h2>
@@ -247,11 +222,11 @@
         <i class="fa-solid fa-gift tip-icon"></i>
         <div>
           <h3>Сюрпризы</h3>
-          <p>Возьмите с собой отличное настроение! Приветствуются ваши поздравления, активное участие в интерактивах и творческие выступления. Обращайтесь к организатору: Анастасия +7 922 254 66 50.</p>
+          <p>Возьмите с собой отличное настроение! Приветствуются ваши поздравления, активное участие в интерактивах и творческие выступления. Обращайтесь к ведущему: Искандер <a href="tel:+79177379089">+7 917 737-90-89</a>.</p>
         </div>
       </div>
       <div class="tip" data-aos="fade-right" data-aos-delay="200">
-        <i class="fa-solid fa-rose tip-icon"></i>
+        <i class="fa-solid fa-seedling tip-icon"></i>
         <div>
           <h3>Цветы</h3>
           <p>Наш праздник будет окружён изобилием цветов, поэтому вместо букета мы будем рады бутылке вашего любимого вина.</p>
@@ -278,10 +253,7 @@
       <h2>Место проведения</h2>
       <p class="address">Город Бирск, улица Чкалова, 2Д</p>
       <div class="map" data-aos="zoom-in">
-        <iframe
-          src="https://www.google.com/maps?q=Город+Бирск+улица+Чкалова+2Д&output=embed"
-          allowfullscreen>
-        </iframe>
+        <iframe loading="lazy" src="https://www.google.com/maps?q=Город+Бирск+улица+Чкалова+2Д&output=embed" allowfullscreen></iframe>
       </div>
     </section>
 
@@ -323,10 +295,23 @@
 
   </div> <!-- /.wrapper -->
 
+  <!-- Scroll-to-top -->
+  <button id="toTop" aria-label="Наверх"><i class="fa-solid fa-chevron-up"></i></button>
+
   <!-- AOS JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
   <script>
-    AOS.init({ once: true, duration: 800, easing: 'ease-in-out' });
+    document.addEventListener('DOMContentLoaded', () => {
+      AOS.init({ once: true, duration: 800, easing: 'ease-in-out' });
+
+      const toTop = document.getElementById('toTop');
+      window.addEventListener('scroll', () => {
+        toTop.style.display = window.scrollY > 200 ? 'block' : 'none';
+      });
+      toTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
   </script>
 </body>
 </html>
