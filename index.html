@@ -261,31 +261,42 @@
     </section>
 
     <!-- RSVP -->
-    <section class="rsvp" data-aos="fade-up">
-      <h2>С нетерпением ждём вас</h2>
-      <form action="https://formspree.io/f/your-form-id" method="POST">
-        <label>
-          Ваши имя и фамилия
-          <input type="text" name="name" required>
-        </label>
-        <label>
-          Планируете ли остаться с ночёвкой?
-          <select name="attend" required>
-            <option>Да, с удовольствием!</option>
-            <option>К сожалению, нет</option>
-          </select>
-        </label>
-        <label>
-          Ваши предпочтения по напиткам?
-          <input type="text" name="partner">
-        </label>
-        <label>
-          Есть ли у вас аллергия и на что?
-          <textarea name="allergy" rows="2"></textarea>
-        </label>
-        <button type="submit">Отправить</button>
-      </form>
-    </section>
+<section class="rsvp" data-aos="fade-up">
+  <h2>С нетерпением ждём вас</h2>
+  <form action="https://formspree.io/f/mkgbrvgd" method="POST">
+    <!-- Вернёт пользователя на эту страницу после отправки (можно заменить) -->
+    <input type="hidden" name="_next" value="https://ваш-сайт.ru/thank-you.html">
+    <!-- Тема письма, которую вы получите -->
+    <input type="hidden" name="_subject" value="Новый RSVP от гостя">
+    <!-- Если хотите увидеть в письме, от кого отправлено -->
+    <!-- <input type="hidden" name="_replyto" value="guest@example.com"> -->
+
+    <label>
+      Ваши имя и фамилия
+      <input type="text" name="name" required>
+    </label>
+
+    <label>
+      Планируете ли остаться с ночёвкой?
+      <select name="attend" required>
+        <option>Да, с удовольствием!</option>
+        <option>К сожалению, нет</option>
+      </select>
+    </label>
+
+    <label>
+      Ваши предпочтения по напиткам?
+      <input type="text" name="drinks">
+    </label>
+
+    <label>
+      Есть ли у вас аллергия и на что?
+      <textarea name="allergy" rows="2"></textarea>
+    </label>
+
+    <button type="submit">Отправить</button>
+  </form>
+</section>
 
     <!-- Signature -->
     <footer class="signature" data-aos="fade-up">
